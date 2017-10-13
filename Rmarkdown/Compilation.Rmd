@@ -18,23 +18,50 @@ knitr::opts_chunk$set(echo = TRUE)
 This page is designed to provide current and historic system and water use stats. Data is pulled from.... 
 
 
-##Current Reservoir Status 
+##Current Reservoir Status  
 
-
-
-```{r include=FALSE}
+```{r global_options, include=FALSE, resutls='asis'}
 library(shiny)
 library(rmarkdown)
 library(tidyverse)
 library(ggplot2)
 library(plotly)
+
+
 ```
 
 
 
 
+``` {r echo = FALSE, warning=FALSE, results='asis'}
 
-``` {r echo = FALSE, warning=FALSE}
+cat("
+
+<style>
+  .shiny-frame {
+}
+
+</style>
+
+")
+
+
+library(shiny)
+ui1 <- fluidPage(
+  fluidRow(
+    column(width=12,
+      plotOutput("bigdonut"), align ="center"
+    )
+  ), 
+  fluidRow(
+    column(width=12,
+      plotOutput("donuts"), align="center"
+    )
+  )
+)  
+
+
+server1 <- shinyServer(function(input, output, session){
   
 reservoir <- c("Lake Havasu", "Lake Mead", "Lake Mohave", "Lake Powell")
 full <- c(95,50,90,30)
@@ -43,11 +70,9 @@ lakesize <- c(100, 1000, 100, 700)
 ymin <- c(0,0,0,0)
 xmin <- c(70, 70, 70, 70)
 xmax <- c(100, 100, 100, 100)
-
-  
 dat <- data.frame(reservoir, lab, full, lakesize, ymin, xmax)
 
-renderPlot({
+output$bigdonut <- renderPlot({
   tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
   bd <- ggplot(tot) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
@@ -68,7 +93,7 @@ renderPlot({
 })
 
 
-renderPlot({
+output$donuts <- renderPlot({
   donut <- ggplot(dat) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
     geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
@@ -87,10 +112,11 @@ renderPlot({
     facet_grid(~reservoir, switch="both")
   donut
 })  
-  
-  
-```
+})
 
+shinyApp(ui = ui1, server = server1) 
+
+```
 
 
 ## Water Use Network
@@ -100,6 +126,51 @@ The graphic below is depiction of the Lower Colorado River Basin and it's water 
 ``` {r include = FALSE, echo = FALSE, warning=FALSE}
 
 
+  
+``` 
+
+``` {r echo = FALSE, warning=FALSE, results="asis"}
+  
+cat("
+
+<style>
+  .shiny-frame {
+  height: 1000px;
+}
+
+</style>
+
+")
+
+rm(list=ls())
+library(shiny)
+monthStart <- function(x) {
+  x <- as.POSIXlt(x)
+  x$mday <- 1
+  as.Date(x)
+}
+uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv")
+uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
+
+ui <- fluidPage(
+  
+  fluidRow(shiny::column(12, offset=4, selectInput("scaleby","Scale nodes by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
+    )
+  ),
+  fluidRow(
+    column(6, div(plotlyOutput("NetworkPlot", width="375px", height="500px"))
+    ), 
+    column(6, div(style = "height: 500px; background-color: #fcfcfc;")
+    )
+  ),  
+  fluidRow(shiny::column(12, offset=4, sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
+    )
+  )
+)
+
+
+server <- shinyServer(function(input, output, session){
+  
   uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv")
   nframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Nodes.csv")
   riv <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/River.csv")
@@ -107,10 +178,42 @@ The graphic below is depiction of the Lower Colorado River Basin and it's water 
   uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
   nframe$MoYear <- as.POSIXct(paste(nframe$Month, "-", 1, "-", nframe$Year, sep=""), format="%m-%d-%Y")
   
-  
-``` 
+  sliderMonth <- reactiveValues()
+  observe({
+    full.date <- as.POSIXct(input$slider, tz="GMT")
+    sliderMonth$Month <- as.character(monthStart(full.date))
+  })
+  output$SliderText <- renderText({sliderMonth$Month})
+  output$NetworkPlot <- renderPlotly({
 
-``` {r echo = FALSE, warning=FALSE}
+      gg <- ggplot(uframe, aes(dx, dy)) + 
+      geom_point(data=uframe, aes(size=eoyForecast,text=sprintf("Reservoir: %s",User), ids=User), alpha=0.5) +
+      geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
+      geom_segment(data=cons, aes(x=dx, y=dy,text=sprintf("Reservoir: %s",User), xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
+      geom_point(data=nframe, aes(dx,dy, text=sprintf("Reservoir: %s",Reservoir)), colour="steelblue") +
+      coord_equal() +
+      xlab("") + 
+      ylab("") + 
+      xlim(520000,2100000) +
+      theme_minimal() +
+      theme(panel.background=element_rect(colour=NULL, fill="white"), 
+            panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(), 
+            axis.text=element_blank())
+      
+    gg <- ggplotly(gg, tooltip=c("text")) 
+    
+   })
+})
+
+
+
+shinyApp(ui = ui, server = server)
+
+
+
+
+
   #uframe$scale <- reactive({ uframe$scale <- if(input$scaleby == "End of Month Use") {
   #  uframe$endOfMonUse
   #} else if(input$scaleby == "End of Year Forecast") {
@@ -128,42 +231,7 @@ The graphic below is depiction of the Lower Colorado River Basin and it's water 
   scaled <- reactive({ lookup[options==input$scaleby,2] })
   
 
-output$NetworkPlot <- renderPlotly({
 
-      gg <- ggplot(uframe, aes(dx, dy)) + 
-      geom_point(data=uframe, aes(size=eoyForecast,text=sprintf("Reservoir: %s",User), frame=MoYear, ids=User), alpha=0.5) +
-      geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
-      geom_segment(data=cons, aes(x=dx, y=dy,text=sprintf("Reservoir: %s",User), xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
-      geom_point(data=nframe, aes(dx,dy, text=sprintf("Reservoir: %s",Reservoir)), colour="steelblue") +
-      coord_equal() +
-      xlab("") + 
-      ylab("") + 
-      xlim(520000,2100000) +
-      theme_minimal() +
-      theme(panel.background=element_rect(colour=NULL, fill="white"), 
-            panel.grid.major=element_blank(), 
-            panel.grid.minor=element_blank(), 
-            axis.text=element_blank())
-      
-    gg <- ggplotly(gg) 
-    style(gg, hoveron="points", hoverinfo = "none")
-    
-   })
-
-
-fluidRow(
-  shiny::column(4, offset=4, selectInput("scaleby","Scale nodes by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
-  )
-)
-
-fluidRow(
-  column(6, div(plotlyOutput("NetworkPlot", width="375px", height="500px"))
-  ), 
-  column(6, div(style = "height: 550px; background-color: #fcfcfc;")
-  )
-)
-
-testing
 
 ``` 
 
