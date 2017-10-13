@@ -1,0 +1,173 @@
+---
+output: 
+  html_document:
+    theme: cosmo
+    highlight: tango
+    toc: true
+    toc_float: true
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+# Lower Colorado River Basin
+This page is designed to provide current and historic system and water use stats. Data is pulled from.... 
+
+
+##Current Reservoir Status 
+
+
+
+```{r include=FALSE}
+library(shiny)
+library(rmarkdown)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+```
+
+
+
+
+
+``` {r echo = FALSE, warning=FALSE}
+  
+reservoir <- c("Lake Havasu", "Lake Mead", "Lake Mohave", "Lake Powell")
+full <- c(95,50,90,30)
+lab <- c("95%", "50%", "90%", "30%")
+lakesize <- c(100, 1000, 100, 700)
+ymin <- c(0,0,0,0)
+xmin <- c(70, 70, 70, 70)
+xmax <- c(100, 100, 100, 100)
+
+  
+dat <- data.frame(reservoir, lab, full, lakesize, ymin, xmax)
+
+renderPlot({
+  tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
+  bd <- ggplot(tot) + 
+    geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
+    geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
+    scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
+    coord_polar(theta="y") +
+    xlim(c(0,100)) + 
+    ylim(c(0,100)) + 
+    theme_minimal() +
+    xlab("") + 
+    ylab("Total System") +
+    theme(panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          axis.text=element_blank(), 
+          axis.title = element_text(size=13, colour="grey60", family="Calibri")) +
+    annotate("text", x=0,y=0, label="55%", fontface=2, color="grey20", family="Calibri", size=18) 
+  bd
+})
+
+
+renderPlot({
+  donut <- ggplot(dat) + 
+    geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
+    geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
+    scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
+    coord_polar(theta="y") +
+    xlim(c(0,100)) + 
+    ylim(c(0,100)) + 
+    theme_minimal() +
+    theme(panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          axis.text=element_blank(),
+          strip.text.x=element_text(size=10, colour="grey60", family="Calibri")) +
+    annotate("text", x=0,y=0, label=lab, fontface=2, color="grey20", family="Calibri", size=14) +
+    xlab("") + 
+    ylab("") +
+    facet_grid(~reservoir, switch="both")
+  donut
+})  
+  
+  
+```
+
+
+
+## Water Use Network
+The graphic below is depiction of the Lower Colorado River Basin and it's water users. The Colorado River is drawn to scale, and major reservoirs are symbolized along the flow path. Users are linked to a reservoir or pumping station with light gray lines. Users are visualized by bubbles which are scaled based on the end of month use. Use the slider to view usage patterns in previous months. Click on a node to pull up additional information in the pane to the right. 
+
+
+``` {r include = FALSE, echo = FALSE, warning=FALSE}
+
+
+  uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv")
+  nframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Nodes.csv")
+  riv <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/River.csv")
+  cons <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/connections.csv")
+  uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
+  nframe$MoYear <- as.POSIXct(paste(nframe$Month, "-", 1, "-", nframe$Year, sep=""), format="%m-%d-%Y")
+  
+  
+``` 
+
+``` {r echo = FALSE, warning=FALSE}
+  #uframe$scale <- reactive({ uframe$scale <- if(input$scaleby == "End of Month Use") {
+  #  uframe$endOfMonUse
+  #} else if(input$scaleby == "End of Year Forecast") {
+  #  uframe$eoyForecast 
+  #} else if (input$scaleby == "Approved Annual Diversion") {
+  #  uframe$approvedAnnualVol
+  #} else if (input$scaleby == "Forecasted Annual Excess") {
+  #  uframe$forecastedExcess
+  #}
+  #})
+
+  options <- c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess")
+  vars <- c("endofMonUse", "eoyForecast", "approvedAnnualVol", "forecastedExcess")
+  lookup <- data.frame(options, vars)
+  scaled <- reactive({ lookup[options==input$scaleby,2] })
+  
+
+output$NetworkPlot <- renderPlotly({
+
+      gg <- ggplot(uframe, aes(dx, dy)) + 
+      geom_point(data=uframe, aes(size=eoyForecast,text=sprintf("Reservoir: %s",User), frame=MoYear, ids=User), alpha=0.5) +
+      geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
+      geom_segment(data=cons, aes(x=dx, y=dy,text=sprintf("Reservoir: %s",User), xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
+      geom_point(data=nframe, aes(dx,dy, text=sprintf("Reservoir: %s",Reservoir)), colour="steelblue") +
+      coord_equal() +
+      xlab("") + 
+      ylab("") + 
+      xlim(520000,2100000) +
+      theme_minimal() +
+      theme(panel.background=element_rect(colour=NULL, fill="white"), 
+            panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(), 
+            axis.text=element_blank())
+      
+    gg <- ggplotly(gg) 
+    style(gg, hoveron="points", hoverinfo = "none")
+    
+   })
+
+
+fluidRow(
+  shiny::column(4, offset=4, selectInput("scaleby","Scale nodes by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
+  )
+)
+
+fluidRow(
+  column(6, div(plotlyOutput("NetworkPlot", width="375px", height="500px"))
+  ), 
+  column(6, div(style = "height: 550px; background-color: #fcfcfc;")
+  )
+)
+
+
+
+``` 
+
+
+
+
+
