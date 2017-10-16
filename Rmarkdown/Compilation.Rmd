@@ -11,6 +11,7 @@ runtime: shiny
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+
 ```
 
 
@@ -34,16 +35,6 @@ library(plotly)
 
 
 ``` {r echo = FALSE, warning=FALSE, results='asis'}
-
-cat("
-
-<style>
-  .shiny-frame {
-}
-
-</style>
-
-")
 
 
 library(shiny)
@@ -135,12 +126,14 @@ cat("
 
 <style>
   .shiny-frame {
-  height: 1000px;
-}
-
+  height: 800px;
+  width: 775px;
+  overflow-x: hidden;
+  }
 </style>
 
 ")
+
 
 rm(list=ls())
 library(shiny)
@@ -149,12 +142,18 @@ monthStart <- function(x) {
   x$mday <- 1
   as.Date(x)
 }
-uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv")
+
+
+uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv", col_types=cols())
 uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
+
 
 ui <- fluidPage(
   
-  fluidRow(shiny::column(12, offset=4, selectInput("scaleby","Scale nodes by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
+  fluidRow(
+    shiny::column(6, selectInput("scaleby","Scale Users by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
+    ),
+    shiny::column(6, selectInput("rscaleby", "Scale Resrvoir by:", c("Maximum Storage", "End of Month Storage", "Percent Storage Change from Prior Year"))
     )
   ),
   fluidRow(
@@ -163,7 +162,7 @@ ui <- fluidPage(
     column(6, div(style = "height: 500px; background-color: #fcfcfc;")
     )
   ),  
-  fluidRow(shiny::column(12, offset=4, sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
+  fluidRow(shiny::column(8, offset=4, sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
     )
   )
 )
@@ -171,26 +170,51 @@ ui <- fluidPage(
 
 server <- shinyServer(function(input, output, session){
   
-  uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv")
-  nframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Nodes.csv")
+  uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv") %>% gather("factor", "value", 11:14)
+  nframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Nodes.csv") %>% gather("factor", "value", 4:7)
   riv <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/River.csv")
-  cons <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/connections.csv")
+  cons <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/connections.csv") 
   uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
   nframe$MoYear <- as.POSIXct(paste(nframe$Month, "-", 1, "-", nframe$Year, sep=""), format="%m-%d-%Y")
   
+  
+  ##Link inputs to field names
+  
+  inputscale <- c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess", "Maximum Storage", "End of Month Storage", "Percent Storage Change from Prior Year")
+  field <- c("endOfMonUse", "eoyForecast", "approvedAnnualVol", "forecastedExcess", "MaxStorage", "LiveStoragePerc", "PriorYearStorageChange")
+  scaletab <- data.frame(inputscale, field)
+
+  
+  ##Set the slider result to first of month
   sliderMonth <- reactiveValues()
   observe({
     full.date <- as.POSIXct(input$slider, tz="GMT")
     sliderMonth$Month <- as.character(monthStart(full.date))
   })
   output$SliderText <- renderText({sliderMonth$Month})
+  
+  
+  ## Create reactive data frames
+  puframe <- reactive({
+    df <- uframe %>% 
+      filter(MoYear == sliderMonth$Month & factor==scaletab[inputscale==input$scaleby,2])
+  })
+  
+  pnframe <- reactive({
+    df <- nframe %>% 
+      filter(MoYear == sliderMonth$Month & factor==scaletab[inputscale==input$rscaleby,2]) 
+  })
+  
+
+  
   output$NetworkPlot <- renderPlotly({
 
-      gg <- ggplot(uframe, aes(dx, dy)) + 
-      geom_point(data=uframe, aes(size=eoyForecast,text=sprintf("Reservoir: %s",User), ids=User), alpha=0.5) +
+      gg <- ggplot(puframe(), aes(dx, dy)) + 
+      geom_point(data=puframe(), aes(size=value, text=sprintf("Reservoir: %s",User), ids=User), alpha=0.5) +
       geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
       geom_segment(data=cons, aes(x=dx, y=dy,text=sprintf("Reservoir: %s",User), xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
-      geom_point(data=nframe, aes(dx,dy, text=sprintf("Reservoir: %s",Reservoir)), colour="steelblue") +
+      geom_point(data=pnframe(), aes(dx,dy, size=value, colour=value, text=sprintf("Reservoir: %s",Reservoir))) +
+      scale_colour_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83",guide=FALSE) +
       coord_equal() +
       xlab("") + 
       ylab("") + 
@@ -204,6 +228,7 @@ server <- shinyServer(function(input, output, session){
     gg <- ggplotly(gg, tooltip=c("text")) 
     
    })
+
 })
 
 
@@ -234,6 +259,11 @@ shinyApp(ui = ui, server = server)
 
 
 ``` 
+
+
+
+
+
 
 
 
