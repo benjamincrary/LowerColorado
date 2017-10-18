@@ -161,16 +161,23 @@ ui <- fluidPage(
     )
   ),
   fluidRow(
-    column(6, div(plotlyOutput("NetworkPlot", width="375px", height="500px"))
+    column(6, div(plotlyOutput("NetworkPlot", width="370px", height="500px"))
     ), 
-    fluidRow(
-      column(6, div(tableOutput("shape"),style= "height: 100px; background-color: #fcfcfc;")
-      ),
-      column(6, div(leafletOutput("SidePlot"), style = "height: 400px; background-color: #fcfcfc;")
+    column(6,
+      fluidRow(
+        mainPanel(width=6, div(style="height:500px;",
+          tabsetPanel(type="tabs",
+            tabPanel("Map", div(leafletOutput("SidePlot", width="370px"), style = "height: 400px; background-color: #fcfcfc; align: left")
+              ),
+            tabPanel("Details",
+              div(tableOutput("shape"))
+            )
+          ))
+        )
       )
     )
   ),  
-  fluidRow(shiny::column(8, offset=4, sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
+    fluidRow(shiny::column(12, align="center", sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
     )
   )
 )
