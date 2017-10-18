@@ -27,7 +27,11 @@ library(rmarkdown)
 library(tidyverse)
 library(ggplot2)
 library(plotly)
-
+library(leaflet)
+library(rgdal)
+library(rgeos)
+library(sf)
+library(raster)
 
 ```
 
@@ -153,13 +157,17 @@ ui <- fluidPage(
   fluidRow(
     shiny::column(6, selectInput("scaleby","Scale Users by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
     ),
-    shiny::column(6, selectInput("rscaleby", "Scale Resrvoir by:", c("Maximum Storage", "End of Month Storage", "Percent Storage Change from Prior Year"))
+    shiny::column(6, selectInput("rscaleby", "Scale Resrvoirs by:", c("Maximum Storage", "End of Month Storage", "Percent Storage Change from Prior Year"))
     )
   ),
   fluidRow(
     column(6, div(plotlyOutput("NetworkPlot", width="375px", height="500px"))
     ), 
-    column(6, div(style = "height: 500px; background-color: #fcfcfc;")
+    fluidRow(
+      column(6, div(tableOutput("shape"),style= "height: 100px; background-color: #fcfcfc;")
+      ),
+      column(6, div(leafletOutput("SidePlot"), style = "height: 400px; background-color: #fcfcfc;")
+      )
     )
   ),  
   fluidRow(shiny::column(8, offset=4, sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
@@ -210,9 +218,9 @@ server <- shinyServer(function(input, output, session){
   output$NetworkPlot <- renderPlotly({
 
       gg <- ggplot(puframe(), aes(dx, dy)) + 
-      geom_point(data=puframe(), aes(size=value, text=sprintf("Reservoir: %s",User), ids=User), alpha=0.5) +
+      geom_point(data=puframe(), aes(size=value, text=sprintf(User), ids=User), colour="slategray", alpha=0.5) +
       geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
-      geom_segment(data=cons, aes(x=dx, y=dy,text=sprintf("Reservoir: %s",User), xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
+      geom_segment(data=cons, aes(x=dx, y=dy, xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
       geom_point(data=pnframe(), aes(dx,dy, size=value, colour=value, text=sprintf("Reservoir: %s",Reservoir))) +
       scale_colour_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83",guide=FALSE) +
       coord_equal() +
@@ -228,6 +236,66 @@ server <- shinyServer(function(input, output, session){
     gg <- ggplotly(gg, tooltip=c("text")) 
     
    })
+  
+  
+  output$SidePlot <- renderLeaflet({
+    
+    
+    ##get subset based on selection
+    event.data <- event_data("plotly_click")
+    
+    if(is.null(event.data)== F) {
+      selecteduser <- uframe %>% filter(dx == event.data$x & dy == event.data$y)
+      selectedres <-  nframe %>% filter(dx==event.data$x & dy == event.data$y)
+    }
+    selecteditem <- as.character(
+      if(is.null(event.data)==T) {
+        "Lower Colorado River Basin"
+      } else if(dim(selecteduser)[1]!=0) {
+        selecteduser[1,1]
+      } else if(dim(selectedres)[1]!=0) {
+        selectedres[1,1]
+      } else {
+        "Lower Colorado River Basin"
+      }
+    )
+    
+    UserDA <- st_read("UserDAs.shp", quiet=TRUE) %>% st_transform(4326)
+    UserDAplot <- UserDA %>% filter(WaterUser==selecteditem)
+    pal <- colorFactor(c("#b2df8a", "steelblue", "firebrick3"), UserDAplot$Type)
+    
+    m <- leaflet() %>%
+      addProviderTiles("CartoDB.Positron", group= "Light Basemap") %>%
+      addPolygons(data=UserDAplot, fillOpacity=0.3, smoothFactor=0.5, color= ~pal(Type))
+      
+    
+  })
+  
+    
+  output$shape <- renderTable({
+    
+    
+    ##get subset based on selection
+    event.data <- event_data("plotly_click")
+
+    if(is.null(event.data)== F) {
+      selecteduser <- uframe %>% filter(dx == event.data$x & dy == event.data$y)
+      selectedres <-  nframe %>% filter(dx==event.data$x & dy == event.data$y)
+    }
+    selecteditem <- as.character(
+      if(is.null(event.data)==T) {
+        "Lower Colorado River Basin"
+      } else if(dim(selecteduser)[1]!=0) {
+        selecteduser[1,1]
+      } else if(dim(selectedres)[1]!=0) {
+        selectedres[1,1]
+      } else {
+        "Lower Colorado River Basin"
+      }
+    )
+    selecteditem
+
+  })
 
 })
 
@@ -250,14 +318,8 @@ shinyApp(ui = ui, server = server)
   #}
   #})
 
-  options <- c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess")
-  vars <- c("endofMonUse", "eoyForecast", "approvedAnnualVol", "forecastedExcess")
-  lookup <- data.frame(options, vars)
-  scaled <- reactive({ lookup[options==input$scaleby,2] })
-  
-
-
-
+ UserDA <- st_read("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/Rmarkdown/UserDAs.shp", quiet=TRUE) 
+    
 ``` 
 
 
