@@ -6,11 +6,19 @@ output:
     toc: true
     toc_float: true
 runtime: shiny
+resource_files:
+- UserDAs.cpg
+- UserDAs.dbf
+- UserDAs.prj
+- UserDAs.sbn
+- UserDAs.sbx
+- UserDAs.shp
+- UserDAs.shp.xml
+- UserDAs.shx
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 
 ```
 
@@ -58,14 +66,14 @@ ui1 <- fluidPage(
 
 server1 <- shinyServer(function(input, output, session){
   
-reservoir <- c("Lake Havasu", "Lake Mead", "Lake Mohave", "Lake Powell")
-full <- c(95,50,90,30)
-lab <- c("95%", "50%", "90%", "30%")
+reservoir <- c("Lake Powell", "Lake Mead", "Lake Mohave", "Lake Havasu")
+full <- c(30,50,90,95)
+lab <- c("30%", "50%", "90%", "95%")
 lakesize <- c(100, 1000, 100, 700)
 ymin <- c(0,0,0,0)
 xmin <- c(70, 70, 70, 70)
 xmax <- c(100, 100, 100, 100)
-dat <- data.frame(reservoir, lab, full, lakesize, ymin, xmax)
+dat <- tibble(reservoir, lab, full, lakesize, ymin, xmax)
 
 output$bigdonut <- renderPlot({
   tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
@@ -92,16 +100,16 @@ output$donuts <- renderPlot({
   donut <- ggplot(dat) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
     geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
+    geom_text(aes(x=0,y=0, label=lab), fontface=2, color="grey20", family="Calibri", size=14)+
     scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
     coord_polar(theta="y") +
-    xlim(c(0,100)) + 
+    xlim(c(0,100)) +   
     ylim(c(0,100)) + 
     theme_minimal() +
     theme(panel.grid.major=element_blank(),
           panel.grid.minor=element_blank(),
           axis.text=element_blank(),
           strip.text.x=element_text(size=10, colour="grey60", family="Calibri")) +
-    annotate("text", x=0,y=0, label=lab, fontface=2, color="grey20", family="Calibri", size=14) +
     xlab("") + 
     ylab("") +
     facet_grid(~reservoir, switch="both")
@@ -115,14 +123,9 @@ shinyApp(ui = ui1, server = server1)
 
 
 ## Water Use Network
-The graphic below is depiction of the Lower Colorado River Basin and it's water users. The Colorado River is drawn to scale, and major reservoirs are symbolized along the flow path. Users are linked to a reservoir or pumping station with light gray lines. Users are visualized by bubbles which are scaled based on the end of month use. Use the slider to view usage patterns in previous months. Click on a node to pull up additional information in the pane to the right. 
+The graphic below is depiction of the Lower Colorado River Basin and it's water users. The Colorado River is drawn to scale, and major reservoirs are symbolized as nodes along the flow path. Users are linked to a reservoir or pumping station with light gray lines. Users are visualized by bubbles which are scaled based on the end of month use. Use the slider to view usage patterns in previous months. Click on a node to pull up additional information in the pane to the right. 
 
 
-``` {r include = FALSE, echo = FALSE, warning=FALSE}
-
-
-  
-``` 
 
 ``` {r echo = FALSE, warning=FALSE, results="asis"}
   
@@ -148,7 +151,7 @@ monthStart <- function(x) {
 }
 
 
-uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv", col_types=cols())
+uframe <- read_csv("Users.csv", col_types=cols())
 uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
 
 
@@ -166,7 +169,7 @@ ui <- fluidPage(
     column(6,
       fluidRow(
         mainPanel(width=6, div(style="height:500px;",
-          tabsetPanel(type="tabs",
+          tabsetPanel(type="pills",
             tabPanel("Map", div(leafletOutput("SidePlot", width="370px"), style = "height: 400px; background-color: #fcfcfc; align: left")
               ),
             tabPanel("Details",
@@ -185,10 +188,10 @@ ui <- fluidPage(
 
 server <- shinyServer(function(input, output, session){
   
-  uframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Users.csv") %>% gather("factor", "value", 11:14)
-  nframe <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/Nodes.csv") %>% gather("factor", "value", 4:7)
-  riv <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/River.csv")
-  cons <- read_csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/NetworkXY/connections.csv") 
+  uframe <- read_csv("Users.csv") %>% gather("factor", "value", 11:14)
+  nframe <- read_csv("Nodes.csv") %>% gather("factor", "value", 4:7)
+  riv <- read_csv("River.csv")
+  cons <- read_csv("connections.csv") 
   uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
   nframe$MoYear <- as.POSIXct(paste(nframe$Month, "-", 1, "-", nframe$Year, sep=""), format="%m-%d-%Y")
   
@@ -240,7 +243,7 @@ server <- shinyServer(function(input, output, session){
             panel.grid.minor=element_blank(), 
             axis.text=element_blank())
       
-    gg <- ggplotly(gg, tooltip=c("text")) 
+    gg <- ggplotly(gg, tooltip=c("text")) %>% config(displayModeBar = F) 
     
    })
   
@@ -270,12 +273,17 @@ server <- shinyServer(function(input, output, session){
     UserDA <- st_read("UserDAs.shp", quiet=TRUE) %>% st_transform(4326)
     UserDAplot <- UserDA %>% filter(WaterUser==selecteditem)
     pal <- colorFactor(c("#b2df8a", "steelblue", "firebrick3"), UserDAplot$Type)
+
     
     m <- leaflet() %>%
       addProviderTiles("CartoDB.Positron", group= "Light Basemap") %>%
-      addPolygons(data=UserDAplot, fillOpacity=0.3, smoothFactor=0.5, color= ~pal(Type))
+      addPolygons(data=UserDAplot,
+                  fillOpacity=0.3, 
+                  smoothFactor=0.5, 
+                  color= ~pal(Type), 
+                  label=UserDAplot$WaterUser,
+                  labelOptions = labelOptions(noHide = T, direction="top"))
       
-    
   })
   
     
@@ -325,8 +333,8 @@ shinyApp(ui = ui, server = server)
   #}
   #})
 
- UserDA <- st_read("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/Rmarkdown/UserDAs.shp", quiet=TRUE) 
-    
+
+
 ``` 
 
 
