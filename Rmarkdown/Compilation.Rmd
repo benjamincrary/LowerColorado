@@ -75,35 +75,6 @@ ui1 <- fluidPage(
 
 server1 <- shinyServer(function(input, output, session){
   
-reservoir <- c("Lake Powell", "Lake Mead", "Lake Mohave", "Lake Havasu")
-full <- c(30,50,90,95)
-lab <- c("30%", "50%", "90%", "95%")
-lakesize <- c(100, 1000, 100, 700)
-ymin <- c(0,0,0,0)
-xmin <- c(70, 70, 70, 70)
-xmax <- c(100, 100, 100, 100)
-dat <- tibble(reservoir, lab, full, lakesize, ymin, xmax)
-
-output$bigdonut <- renderPlot({
-  tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
-  bd <- ggplot(tot) + 
-    geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
-    geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
-    scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
-    coord_polar(theta="y") +
-    xlim(c(0,100)) + 
-    ylim(c(0,100)) + 
-    theme_minimal() +
-    xlab("") + 
-    ylab("Total System") +
-    theme(panel.grid.major=element_blank(),
-          panel.grid.minor=element_blank(),
-          axis.text=element_blank(),
-          axis.title = element_text(size=13, colour="grey60", family="Calibri")) +
-    annotate("text", x=0,y=0, label="55%", fontface=2, color="grey20", family="Calibri", size=18) 
-  bd
-})
-
 
 
 ### query live data from usbr
@@ -174,10 +145,37 @@ output$bigdonut <- renderPlot({
   table4 <- factorsNumeric(table4)                          ## setting all fields to type numeric (from factor) 
 
 
-
 output$DateOfData <- renderUI({
   HTML(paste("<br><br>Status as of:", "<br>", url_month," ",max(table1$Date), ", ", url_year, sep=""))
   
+})
+
+
+output$bigdonut <- renderPlot({
+  
+  
+  data.bd <- data.frame("Day"=table2$`Date`, "Month"=url_month, "Year" = url_year, "Total.System.Storage"=table2$`Total System Storage`, "System.Space.Available" =table2$`Total Available Space`, "lakesize" = table2$`Total Available Space` + table2$`Total System Storage`, "full" = round(table2$`Total System Storage`/(table2$`Total Available Space`+table2$`Total Available Space`)*100,0), "ymin" = 0, "xmin"=70, "xmax"=100) %>%
+    mutate("lab" = paste(full, "%", sep="")) %>%
+    mutate("Date" = parse_date_time(paste(Day, Month, Year, sep=" "), orders="dmy")) %>%
+    filter(Date == max(Date))
+
+  #tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
+  bd <- ggplot(data.bd) + 
+    geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
+    geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
+    scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
+    coord_polar(theta="y") +
+    xlim(c(0,100)) + 
+    ylim(c(0,100)) + 
+    theme_minimal() +
+    xlab("") + 
+    ylab("Total System") +
+    theme(panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          axis.text=element_blank(),
+          axis.title = element_text(size=14, colour="grey30", family="Calibri")) +
+    annotate("text", x=0,y=0, label=data.bd$lab, fontface=2, color="grey20", family="Calibri", size=18) 
+  bd
 })
 
 
@@ -185,8 +183,7 @@ output$donuts <- renderPlot({
 
 
   ### create data for donut plot:
-
-  caps <- data.frame("reservoir"=c("Lake.Powell", "Lake.Mead", "Lake.Mohave", "Lake.Havasu"), "lakesize" = c(24322000/1000, 26120000/1000, 1809800/1000, 619400/1000))
+caps <- data.frame("reservoir"=c("Lake.Powell", "Lake.Mead", "Lake.Mohave", "Lake.Havasu"), "lakesize" = c(24322000/1000, 26120000/1000, 1809800/1000, 619400/1000))
 
 
 data.donut <- data.frame("Day" = table1$`Date`,"Month"=url_month, "Year"=url_year, "Lake.Powell" = table3$`Lake Powell Content 1000 AF`, "Lake.Mead" = table2$`Hoover Content 1000 AF`, "Lake.Mohave" = table2$`Davis Content 1000 AF`, "Lake.Havasu" = table2$`Parker Content 1000 AF`) %>%
@@ -211,7 +208,7 @@ data.donut <- data.frame("Day" = table1$`Date`,"Month"=url_month, "Year"=url_yea
     theme(panel.grid.major=element_blank(),
           panel.grid.minor=element_blank(),
           axis.text = element_blank(),
-          strip.text.x=element_text(size=10, colour="grey60", family="Calibri"), 
+          strip.text.x=element_text(size=14, colour="grey40", family="Calibri"), 
           axis.title.y = element_blank(),
           axis.title.x = element_blank(),
           panel.border= element_blank(),
