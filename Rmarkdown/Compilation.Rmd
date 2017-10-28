@@ -40,6 +40,10 @@ library(rgdal)
 library(rgeos)
 library(sf)
 library(raster)
+library(rvest)
+library(stringr)
+library(lubridate)
+library(gridExtra)
 
 ```
 
@@ -48,18 +52,23 @@ library(raster)
 
 ``` {r echo = FALSE, warning=FALSE, results='asis'}
 
-
+  
 library(shiny)
 ui1 <- fluidPage(
   fluidRow(
+    fluidRow(
+      column(width=12,
+        htmlOutput("DateOfData"), align="left", style='color:#cccccc;font-style: italic;'
+      ),style="overflow-x:hidden;"
+    ),
     column(width=12,
-      plotOutput("bigdonut"), align ="center"
-    )
+      plotOutput("bigdonut"), align="right", style='padding:0px;'
+    ),style="overflow-x:hidden;"
   ), 
   fluidRow(
     column(width=12,
-      plotOutput("donuts"), align="center"
-    )
+      plotOutput("donuts"), align ="center", style='padding:0px; height:300px; width:790px; object-fit: none; object-position: 200% 150%;'
+    ), style="overflow-x:hidden; overflow-y:hidden;"
   )
 )  
 
@@ -89,31 +98,132 @@ output$bigdonut <- renderPlot({
     ylab("Total System") +
     theme(panel.grid.major=element_blank(),
           panel.grid.minor=element_blank(),
-          axis.text=element_blank(), 
+          axis.text=element_blank(),
           axis.title = element_text(size=13, colour="grey60", family="Calibri")) +
     annotate("text", x=0,y=0, label="55%", fontface=2, color="grey20", family="Calibri", size=18) 
   bd
 })
 
 
+
+### query live data from usbr
+  asNumeric <- function(x) as.numeric(as.character(x))
+  factorsNumeric <- function(d) modifyList(d, lapply(d[, sapply(d, is.factor)],   
+                                                   asNumeric))
+  
+  url <- 'https://www.usbr.gov/lc/region/g4000/hourly/levels.html'
+
+  PREblock <- read_html(url) %>% html_node(".MainContainer .Main-well .dataFrame") %>% html_text() ## pull <pre> tag block from html
+  PREblock <- data.frame("line" = unlist(strsplit(PREblock, c("\n")))) ##create data frame, with rows after each new line character (\n)
+  url_date <- str_split(PREblock[3,1]," ") ## pull the 3rd line to access date
+  url_month <- url_date[[1]][63]
+  url_year <- as.numeric(url_date[[1]][64])
+  PREblock$flag <- str_detect(PREblock$line, paste0("^",'\\s*', '[0-9]')) ## define rows which contain data 
+
+
+  data <- PREblock %>% filter(flag=="TRUE") 
+  data$table <- c(rep(1, dim(data)[1]/4), rep(2, dim(data)[1]/4), rep(3, dim(data)[1]/4), rep(4,dim(data)[1]/4))
+
+  ### Tables do not have equal spaces between each parameter and there is the possility of blanks being treated as delimiters.   However, fields begin and end at specific character numbers for each table. Use sapply in conjunction with substring to define start and stop characters for each substring/field. 
+
+  #TABLE1 - ACCUMULATIONS
+  table1 <- data %>% filter(table==1)
+  table1 <- t(sapply(table1$line, substring, c(1,4,12,21,30,37,44,52,59,64,72,79,86,94,100,106,113,123,130,137,146,153,160), c(3,11,19,29,36,43,51,58,63,71,78,85,93,99,105,112,122,129,136,145,152,159,166)))
+  colnames(table1) <- c("Date", "Glen Canyon CFS", "Glen Canyon Accum AF", "Lake Mead Elevation Feet", "Hoover Dam CFS", "Hoover Dam Release AF", "Hoover Dam Accum", "Hoover Damnn Gross Gen", "Hoover Dam Rate KWH/AF", "Lake Mohave Elevation Feet", "Davis Dam CFS", "Davis Dam AF", "Davis Dam Release Accum", "Davis Dam Gross Gen", "MWD AF", "MWD Accum", "Lake Havasu Elevation Feet", "Parker Dam CFS", "Parker AF", "Parker Release Release Accum", "Parker Dam Gross Gen", "CAP AF", "CAP Accum") ## hard coding field names
+  table1 <- apply(table1,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
+  table1 <- as.data.frame(table1)                           ## setting back to data frame
+  table1 <- factorsNumeric(table1)                          ## setting all fields to type numeric (from factor) 
+
+
+  #TABLE 2 - RESERVOIR ELEVATIONS AND CONTENTS
+  table2 <- data %>% filter(table==2)
+  table2 <- t(sapply(table2$line, substring, c(1,9,20,29,40,51,63,72,83,92,102,113,122,134,143,152),c(8,19,28,39,50,62,71,82,91,101,112,121,133,142,151,160)))
+  colnames(table2) <- c("Date", "Total System Storage", "Total Available Space", "Lake Mead Elevation Feet", "Hoover Content 1000 AF", "Lake Mead Release CFS", "Lake Mohave Elevation Feet", "Davis Content 1000 AF", "Lake Mohave Release CFS", "Lake Havasu Elevation Feet", "Parker Content 1000 AF", "Lake Havasu Release CFS", "Senator Wash Elevation Feet", "Senator Content AF", "Wash Pumped CFS", "Senator Wash Release CFS")
+  table2 <- apply(table2,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
+  table2 <- as.data.frame(table2)                           ## setting back to data frame
+  table2 <- factorsNumeric(table2)                          ## setting all fields to type numeric (from factor) 
+
+
+  #TABLE 3 - STORAGE PROJECT DATA
+  table3 <- data %>% filter(table==3)
+  table3 <- t(sapply(table3$line, substring, c(1,5,12,22,30,39,52,59,68,81,88,97,109,118,126,138,147),c(4,11,21,29,38,51,58,67,80,87,96,108,117,125,137,146,154)))
+  colnames(table3) <- c("Date", "Computed Inflow CFS", "Lake Powell Elevation Feet", "Lake Powell Content 1000 AF", "Lake Powell Release CFS", "Flaming Gorge Elevation Feet", "Flaming Gorge Content 1000 AF", "Flaming Gorge Release CFS", "Navajo Elevation Feet", "Navajo Content 1000 AF", "Navajo Release CFS", "Blue Mesa Elevation Feet", "Blue Mesa Content 1000 AF", "Blue Mesa Release CFS", "Morrow Point Elevation Feet", "Morrow Point Content 1000 AF", "Morrow Point Release CFS")
+  table3 <- apply(table3,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
+  table3 <- as.data.frame(table3)                           ## setting back to data frame
+  table3 <- factorsNumeric(table3)                          ## setting all fields to type numeric (from factor) 
+
+
+  #TABLE 4 - GLEN CANYON TO HOOVER DAM LOSSES
+  table4 <- data %>% filter(table==4)
+  table4 <- t(sapply(table4$line, substring, c(1,8,21,33,43,53,63,73,83,93,103),c(7,20,32,42,52,62,72,82,92,102,112)))
+
+  colnames(table4) <- c("Date", 
+  "Glen Release CFS", 
+  "Hoover Release CFS", 
+  "Lake Mead Storage 1000 AF",
+  "Storage Change 1000 AF",
+  "Lake Mead Pumping CFS",
+  "Lake Mead Evaporation CFS",
+  "Change Bank Storage CFS",
+  "Loss CFS",
+  "Accumulation AF",
+  "Inflow CFS")
+  
+  table4 <- apply(table4,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
+  table4 <- as.data.frame(table4)                           ## setting back to data frame
+  table4 <- factorsNumeric(table4)                          ## setting all fields to type numeric (from factor) 
+
+
+
+output$DateOfData <- renderUI({
+  HTML(paste("<br><br>Status as of:", "<br>", url_month," ",max(table1$Date), ", ", url_year, sep=""))
+  
+})
+
+
 output$donuts <- renderPlot({
-  donut <- ggplot(dat) + 
+
+
+  ### create data for donut plot:
+
+  caps <- data.frame("reservoir"=c("Lake.Powell", "Lake.Mead", "Lake.Mohave", "Lake.Havasu"), "lakesize" = c(24322000/1000, 26120000/1000, 1809800/1000, 619400/1000))
+
+
+data.donut <- data.frame("Day" = table1$`Date`,"Month"=url_month, "Year"=url_year, "Lake.Powell" = table3$`Lake Powell Content 1000 AF`, "Lake.Mead" = table2$`Hoover Content 1000 AF`, "Lake.Mohave" = table2$`Davis Content 1000 AF`, "Lake.Havasu" = table2$`Parker Content 1000 AF`) %>%
+  gather("reservoir", "full", 4:7) %>%
+  left_join(caps, by="reservoir") %>%
+  mutate("lab" = paste0(round(full/lakesize*100,0),"%"), "ymin" = 0, "xmin" = 70, "xmax" = 100) %>%
+  mutate("reservoirLabel" = gsub("\\.", " ", reservoir)) %>%
+  mutate("Date" = parse_date_time(paste(Day, Month, Year, sep=" "), orders="dmy")) %>%
+  filter(Date == max(Date))
+
+  donut <- ggplot(data.donut) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
-    geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
+    geom_rect(aes(fill=full/lakesize*100, ymax=full/lakesize*100, ymin=ymin, xmax=xmax, xmin=xmin)) +
     geom_text(aes(x=0,y=0, label=lab), fontface=2, color="grey20", family="Calibri", size=14)+
     scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
     coord_polar(theta="y") +
     xlim(c(0,100)) +   
     ylim(c(0,100)) + 
+    facet_grid(~reservoirLabel, switch="x") +
+    labs(x=NULL, y=NULL) +
     theme_minimal() +
     theme(panel.grid.major=element_blank(),
           panel.grid.minor=element_blank(),
-          axis.text=element_blank(),
-          strip.text.x=element_text(size=10, colour="grey60", family="Calibri")) +
-    xlab("") + 
-    ylab("") +
-    facet_grid(~reservoir, switch="both")
-  donut
+          axis.text = element_blank(),
+          strip.text.x=element_text(size=10, colour="grey60", family="Calibri"), 
+          axis.title.y = element_blank(),
+          axis.title.x = element_blank(),
+          panel.border= element_blank(),
+          plot.margin=unit(c(0,0,0,0),"mm"),
+          title = element_blank(), 
+          line = element_blank()) 
+    
+donut
+
+  #ggsave(paste0("C:/Users/bcrary/Desktop/","plotout.jpg"), width=12, height=3)
+ 
+  
 })  
 })
 
@@ -133,7 +243,7 @@ cat("
 
 <style>
   .shiny-frame {
-  height: 800px;
+  height: 1000px;
   width: 775px;
   overflow-x: hidden;
   }
@@ -180,7 +290,7 @@ ui <- fluidPage(
       )
     )
   ),  
-    fluidRow(shiny::column(12, align="center", sliderInput("slider", "Time", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
+    fluidRow(shiny::column(12, align="center", sliderInput("slider", "", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
     )
   )
 )
