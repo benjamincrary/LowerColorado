@@ -5,8 +5,8 @@ account: bcrary
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 226970
-bundleId: 1080312
+bundleId: 1081575
 url: https://limno.shinyapps.io/lowercrb/
-when: 1510888172.71615
+when: 1510943011.30534
 asMultiple: FALSE
 asStatic: FALSE
