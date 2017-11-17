@@ -1,10 +1,12 @@
 name: lowercrb
 title: LowerCRB
+username:
 account: bcrary
 server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
 appId: 226970
-bundleId: 1035088
-url: https://bcrary.shinyapps.io/lowercrb/
-when: 1508428194.91348
+bundleId: 1080312
+url: https://limno.shinyapps.io/lowercrb/
+when: 1510888172.71615
 asMultiple: FALSE
 asStatic: FALSE

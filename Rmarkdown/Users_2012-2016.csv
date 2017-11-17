@@ -1,0 +1,535 @@
+User,parameter,year,JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
+Bard Unit,Measured Returns,2012,26,30,47,27,32,68,97,144,86,108,94,6
+Bard Unit,Unmeasured Returns,2012,438,571,960,"1,097",907,679,735,884,651,846,637,66
+Bard Unit,Diversion,2012,"2,624","3,421","5,746","6,569","5,431","4,065","4,402","5,292","3,899","5,067","3,816",397
+Bard Unit,Measured Returns,2013,37,36,44,67,70,65,79,50,68,61,56,54
+Bard Unit,Unmeasured Returns,2013,455,434,903,"1,097",888,826,795,698,520,739,489,423
+Bard Unit,Diversion,2013,"2,726","2,599","5,407","6,571","5,319","4,946","4,760","4,179","3,116","4,425","2,929","2,535"
+Bard Unit,Measured Returns,2014,52,29,81,52,59,71,69,76,100,66,75,93
+Bard Unit,Unmeasured Returns,2014,495,440,909,955,897,930,801,654,750,665,623,411
+Bard Unit,Diversion,2014,"2,966","2,632","5,442","5,721","5,373","5,567","4,795","3,918","4,490","3,985","3,728","2,463"
+Bard Unit,Measured Returns,2015,50,42,62,60,19,50,49,76,97,67,114,118
+Bard Unit,Unmeasured Returns,2015,389,524,"1,013","1,089",895,587,543,651,596,711,636,476
+Bard Unit,Diversion,2015,"2,331","3,136","6,065","6,518","5,362","3,517","3,251","3,900","3,566","4,257","3,807","2,851"
+Bard Unit,Diversion,2016,1706,3124,5041,4927,4856,4673,6280,2397,4136,4341,3979,2249
+Bard Unit,Measured Returns,2016,9,45,32,25,62,100,140,58,54,10,54,80
+Bard Unit,Unmeasured Returns,2016,285,522,842,823,811,780,1049,400,691,725,664,376
+Bullhead City,Diversion,2012,0,0,1,3,1,1,1,1,1,0,0,0
+Bullhead City,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Bullhead City,Unmeasured Returns,2012,207,173,242,231,307,302,338,330,307,248,247,190
+Bullhead City,Consumptive Use,2012,420,350,490,470,623,614,686,669,624,503,502,385
+Bullhead City,Diversion,2012,627,523,731,698,929,915,"1,023",998,930,751,749,575
+Bullhead City,Diversion,2013,0,0,1,0,1,1,1,1,1,0,0,1
+Bullhead City,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Bullhead City,Unmeasured Returns,2013,207,186,224,247,298,325,334,304,293,225,217,226
+Bullhead City,Consumptive Use,2013,421,377,456,501,604,659,677,618,596,458,442,459
+Bullhead City,Diversion,2013,628,563,679,748,901,983,"1,010",921,888,683,659,684
+Bullhead City,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Bullhead City,Diversion,2014,1,0,1,1,1,0,1,0,1,1,0,0
+Bullhead City,Unmeasured Returns,2014,224,209,228,258,312,339,343,347,322,303,235,266
+Bullhead City,Consumptive Use,2014,454,425,463,523,632,687,695,706,653,616,478,540
+Bullhead City,Diversion,2014,677,634,690,780,943,"1,026","1,037","1,053",974,918,713,806
+Bullhead City,Diversion,2015,0,0,2,1,1,2,2,1,2,1,0,0
+Bullhead City,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Bullhead City,Unmeasured Returns,2015,208,197,244,273,295,296,304,318,302,263,228,202
+Bullhead City,Consumptive Use,2015,423,399,494,554,600,602,617,646,612,533,462,409
+Bullhead City,Diversion,2015,631,596,736,826,894,896,919,963,912,795,690,611
+Bullhead City,Diversion,2016,608,774,548,763,804,976,996,1000,907,823,750,676
+Bullhead City,Diversion,2016,0,1,1,1,1,1,1,1,1,1,1,0
+Bullhead City,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Bullhead City,Unmeasured Returns,2016,201,256,181,252,266,322,329,330,300,272,248,223
+Bullhead City,Consumptive Use,2016,407,519,368,512,539,655,668,671,608,552,503,453
+Central Arizona Project,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Unmeasured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Diversion,2012,"186,564","168,959","187,497","179,531","179,210","129,951","34,437","85,226","136,910","31,581","173,912","132,284"
+Central Arizona Project,Consumptive Use,2012,"186,564","168,959","187,497","179,531","179,210","129,951","34,437","85,226","136,910","31,581","173,912","132,284"
+Central Arizona Project,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Unmeasured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Diversion,2013,"79,888","146,879","179,730","148,444","174,238","129,487","80,301","95,266","149,252","186,039","143,877","137,866"
+Central Arizona Project,Consumptive Use,2013,"79,888","146,879","179,730","148,444","174,238","129,487","80,301","95,266","149,252","186,039","143,877","137,866"
+Central Arizona Project,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Unmeasured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Diversion,2014,"84,467","130,265","176,237","177,897","183,603","133,051","92,532","99,382","140,046","134,799","146,606","131,792"
+Central Arizona Project,Consumptive Use,2014,"84,467","130,265","176,237","177,897","183,603","133,051","92,532","99,382","140,046","134,799","146,606","131,792"
+Central Arizona Project,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Unmeasured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Diversion,2015,"180,492","109,441","146,368","154,414","177,030","77,195","70,484","69,587","167,508","115,253","120,080","130,170"
+Central Arizona Project,Consumptive Use,2015,"180,492","109,441","146,368","154,414","177,030","77,195","70,484","69,587","167,508","115,253","120,080","130,170"
+Central Arizona Project,Diversion,2016,155980,116971,122518,168623,176141,88596,74494,64682,133630,133167,140485,117864
+Central Arizona Project,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Unmeasured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Central Arizona Project,Consumptive Use,2016,155980,116971,122518,168623,176141,88596,74494,64682,133630,133167,140485,117864
+Chemehuevi Indian Reservation,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Chemehuevi Indian Reservation,Unmeasured Returns,2012,6,6,6,6,7,9,8,7,6,6,6,5
+Chemehuevi Indian Reservation,Consumptive Use,2012,7,7,7,7,8,10,9,9,8,8,7,5
+Chemehuevi Indian Reservation,Diversion,2012,13,13,13,13,15,19,17,16,14,14,13,10
+Chemehuevi Indian Reservation,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Chemehuevi Indian Reservation,Unmeasured Returns,2013,9,5,7,8,9,11,13,11,9,8,7,6
+Chemehuevi Indian Reservation,Consumptive Use,2013,11,6,8,9,11,13,15,12,11,10,9,8
+Chemehuevi Indian Reservation,Diversion,2013,20,11,15,17,20,24,28,23,20,18,16,14
+Chemehuevi Indian Reservation,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Chemehuevi Indian Reservation,Unmeasured Returns,2014,6,4,8,8,11,15,15,15,8,8,9,7
+Chemehuevi Indian Reservation,Consumptive Use,2014,6,5,10,10,12,17,17,18,9,10,10,8
+Chemehuevi Indian Reservation,Diversion,2014,12,9,18,18,23,32,32,33,17,18,19,15
+Chemehuevi Indian Reservation,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Chemehuevi Indian Reservation,Unmeasured Returns,2015,6,5,7,6,11,12,9,12,6,5,5,18
+Chemehuevi Indian Reservation,Consumptive Use,2015,6,6,8,8,12,13,11,14,8,6,5,22
+Chemehuevi Indian Reservation,Diversion,2015,12,11,15,14,23,25,20,26,14,11,10,40
+Chemehuevi Indian Reservation,Diversion,2016,14,12,14,15,26,30,18,30,28,25,13,19
+Chemehuevi Indian Reservation,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Chemehuevi Indian Reservation,Unmeasured Returns,2016,6,6,6,7,12,14,8,13,13,12,6,9
+Chemehuevi Indian Reservation,Consumptive Use,2016,8,6,8,8,14,16,10,17,15,13,7,10
+Cibola Valley I.D.D.,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Cibola Valley I.D.D.,Unmeasured Returns,2013,34,105,351,260,296,342,243,215,219,136,1,86
+Cibola Valley I.D.D.,Consumptive Use,2013,87,265,880,654,742,857,608,538,550,340,2,214
+Cibola Valley I.D.D.,Diversion,2013,121,370,"1,231",914,"1,038","1,199",851,753,769,476,3,300
+Cibola Valley I.D.D.,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Cibola Valley I.D.D.,Unmeasured Returns,2014,219,232,304,204,312,390,338,228,222,177,209,185
+Cibola Valley I.D.D.,Consumptive Use,2014,551,582,763,511,782,980,849,572,557,443,523,465
+Cibola Valley I.D.D.,Diversion,2014,770,814,"1,067",715,"1,094","1,370","1,187",800,779,620,732,650
+Cibola Valley I.D.D.,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Cibola Valley I.D.D.,Unmeasured Returns,2015,78,259,298,428,276,254,364,378,260,161,145,108
+Cibola Valley I.D.D.,Consumptive Use,2015,195,650,747,"1,075",693,636,913,948,652,403,363,270
+Cibola Valley I.D.D.,Diversion,2015,273,909,"1,045","1,503",969,890,"1,277","1,326",912,564,508,378
+Cibola Valley I.D.D.,Diversion,2016,300,308,623,2233,945,1310,1156,544,964,751,453,761
+Cibola Valley I.D.D.,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Cibola Valley I.D.D.,Unmeasured Returns,2016,86,88,178,636,269,373,329,155,275,214,129,217
+Cibola Valley I.D.D.,Consumptive Use,2016,214,220,445,1597,676,937,827,389,689,537,324,544
+City of Yuma,Unmeasured Returns,2012,3,4,12,23,31,36,33,32,24,11,4,2
+City of Yuma,Diversion,2012,9,10,35,65,88,103,93,91,67,30,10,7
+City of Yuma,Measured Returns,2012,854,817,847,714,749,767,840,836,844,875,844,886
+City of Yuma,Diversion,2012,898,873,"1,003",538,591,583,483,544,484,477,607,558
+City of Yuma,Diversion,2012,"1,002","1,038","1,160","1,190","1,415","1,541","1,722","1,661","1,536","1,555","1,378","1,157"
+City of Yuma,Consumptive Use,2012,"1,052","1,100","1,339","1,056","1,314","1,424","1,425","1,428","1,219","1,176","1,147",834
+City of Yuma,Unmeasured Returns,2013,4,4,14,27,33,36,35,33,26,12,4,3
+City of Yuma,Diversion,2013,10,12,39,77,94,103,100,94,73,34,11,9
+City of Yuma,Diversion,2013,833,767,841,667,804,808,675,584,424,444,489,"1,080"
+City of Yuma,Measured Returns,2013,872,771,847,797,843,828,878,908,891,870,879,"1,031"
+City of Yuma,Consumptive Use,2013,"1,044",955,"1,212","1,225","1,598","1,556","1,344","1,392","1,020","1,045",836,"1,162"
+City of Yuma,Diversion,2013,"1,077",951,"1,193","1,305","1,576","1,509","1,482","1,655","1,440","1,449","1,219","1,107"
+City of Yuma,Unmeasured Returns,2014,4,4,15,25,33,39,40,33,27,11,5,2
+City of Yuma,Diversion,2014,11,11,42,72,93,111,115,96,78,31,13,7
+City of Yuma,Diversion,2014,784,779,819,726,759,497,197,236,273,366,662,836
+City of Yuma,Measured Returns,2014,920,837,906,804,869,860,886,894,864,771,759,"1,023"
+City of Yuma,Consumptive Use,2014,"1,034",951,"1,299","1,455","1,574","1,395","1,243","1,062",996,"1,144","1,258","1,455"
+City of Yuma,Diversion,2014,"1,163","1,002","1,359","1,486","1,624","1,686","1,857","1,657","1,536","1,529","1,347","1,637"
+City of Yuma,Unmeasured Returns,2015,0,1,1,1,1,1,1,1,1,1,1,0
+City of Yuma,Diversion,2015,25,30,36,33,30,28,41,31,28,33,30,26
+City of Yuma,Diversion,2015,775,670,854,844,778,389,431,422,254,396,759,666
+City of Yuma,Measured Returns,2015,938,777,883,840,738,741,749,901,859,869,930,968
+City of Yuma,Consumptive Use,2015,"1,090","1,034","1,348","1,369","1,451","1,326","1,511","1,374","1,122","1,116","1,251","1,109"
+City of Yuma,Diversion,2015,"1,228","1,112","1,342","1,333","1,382","1,651","1,789","1,823","1,700","1,557","1,393","1,385"
+City of Yuma,Diversion,2016,1077,1147,1281,1232,1482,1734,1866,1854,1423,1280,1157,1172
+City of Yuma,Diversion,2016,902,888,1090,886,803,411,444,514,449,435,1038,876
+City of Yuma,Diversion,2016,31,33,28,32,55,60,64,61,66,34,37,26
+City of Yuma,Measured Returns,2016,894,854,926,788,799,812,1111,835,813,803,805,915
+City of Yuma,Unmeasured Returns,2016,1,1,1,1,0,1,1,1,1,1,1,1
+City of Yuma,Consumptive Use,2016,1115,1213,1472,1361,1541,1392,1262,1593,1124,945,1426,1158
+Coachella Valley Water District,Unmeasured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Coachella Valley Water District,Measured Returns,2012,495,560,638,359,612,"1,677","2,119","2,648","1,806","1,816","1,900",717
+Coachella Valley Water District,Consumptive Use,2012,"16,022","20,009","25,742","30,340","35,806","33,869","34,361","34,051","26,844","27,485","26,426","18,621"
+Coachella Valley Water District,Diversion,2012,"16,517","20,569","26,380","30,699","36,418","35,546","36,480","36,699","28,650","29,301","28,326","19,338"
+Coachella Valley Water District,Unmeasured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Coachella Valley Water District,Measured Returns,2013,675,833,654,896,"1,315","1,298","1,689","1,226","1,730","1,109","1,651","1,391"
+Coachella Valley Water District,Consumptive Use,2013,"16,670","19,160","26,271","31,063","34,021","34,001","33,839","33,679","27,528","27,103","26,221","21,581"
+Coachella Valley Water District,Diversion,2013,"17,345","19,993","26,925","31,959","35,336","35,299","35,528","34,905","29,258","28,212","27,872","22,972"
+Coachella Valley Water District,Unmeasured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Coachella Valley Water District,Measured Returns,2014,"1,070",710,"1,221",933,"1,082","1,309","1,702","1,851","2,070","1,416","1,633","2,410"
+Coachella Valley Water District,Consumptive Use,2014,"20,372","21,097","27,157","33,462","33,525","34,441","37,642","35,301","29,862","28,504","26,923","21,086"
+Coachella Valley Water District,Diversion,2014,"21,442","21,807","28,378","34,395","34,607","35,750","39,344","37,152","31,932","29,920","28,556","23,496"
+Coachella Valley Water District,Unmeasured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Coachella Valley Water District,Measured Returns,2015,"1,265",857,808,861,336,"1,440","1,518","1,962","2,504","1,343","2,554","2,865"
+Coachella Valley Water District,Consumptive Use,2015,"18,626","21,372","26,610","32,255","31,875","33,368","32,569","37,426","31,263","26,998","27,385","22,321"
+Coachella Valley Water District,Diversion,2015,"19,891","22,229","27,418","33,116","32,211","34,808","34,087","39,388","33,767","28,341","29,939","25,186"
+Coachella Valley Water District,Diversion,2016,14340,24326,30283,31913,36109,41725,40829,42276,32408,27546,28205,22411
+Coachella Valley Water District,Measured Returns,2016,222,961,548,477,1379,2550,2504,2566,1224,186,1129,2267
+Coachella Valley Water District,Unmeasured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Coachella Valley Water District,Consumptive Use,2016,14118,23365,29735,31436,34730,39175,38325,39710,31184,27360,27076,20144
+Cocopah Indian Reservation,Measured Returns,2012,1,5,7,4,14,20,51,50,16,9,2,0
+Cocopah Indian Reservation,Diversion,2012,44,242,417,418,"1,142",579,"1,194",938,346,201,47,0
+Cocopah Indian Reservation,Unmeasured Returns,2012,61,139,219,226,493,322,544,452,220,154,77,60
+Cocopah Indian Reservation,Consumptive Use,2012,116,266,419,436,943,606,"1,005",826,411,291,148,116
+Cocopah Indian Reservation,Diversion,2012,134,168,228,248,308,369,406,390,301,253,180,176
+Cocopah Indian Reservation,Diversion,2013,0,9,93,94,110,0,22,0,0,0,0,151
+Cocopah Indian Reservation,Measured Returns,2013,1,1,2,2,3,4,1,3,4,4,2,7
+Cocopah Indian Reservation,Unmeasured Returns,2013,39,52,99,105,126,108,125,113,89,74,53,103
+Cocopah Indian Reservation,Consumptive Use,2013,76,101,190,201,242,205,242,217,169,141,102,194
+Cocopah Indian Reservation,Diversion,2013,116,145,198,214,261,317,346,333,262,219,157,153
+Cocopah Indian Reservation,Measured Returns,2014,4,1,3,2,0,0,0,0,0,0,0,6
+Cocopah Indian Reservation,Unmeasured Returns,2014,72,62,89,93,82,99,107,103,81,68,48,77
+Cocopah Indian Reservation,Diversion,2014,106,49,82,78,2,0,0,0,0,0,0,85
+Cocopah Indian Reservation,Diversion,2014,106,133,181,196,239,290,316,304,239,201,142,141
+Cocopah Indian Reservation,Consumptive Use,2014,136,119,171,179,159,191,209,201,158,133,94,143
+Cocopah Indian Reservation,Diversion,2015,0,103,84,42,0,0,0,0,3,0,0,49
+Cocopah Indian Reservation,Measured Returns,2015,0,3,2,1,0,0,0,0,0,0,0,4
+Cocopah Indian Reservation,Unmeasured Returns,2015,33,77,85,75,75,91,99,95,76,63,45,61
+Cocopah Indian Reservation,Consumptive Use,2015,65,145,163,146,145,176,192,185,147,121,86,113
+Cocopah Indian Reservation,Diversion,2015,98,122,166,180,220,267,291,280,220,184,131,129
+Cocopah Indian Reservation,Diversion,2016,0,49,86,78,0,0,0,0,71,0,54,0
+Cocopah Indian Reservation,Diversion,2016,101,126,172,186,227,275,300,289,227,190,135,133
+Cocopah Indian Reservation,Measured Returns,2016,0,1,1,1,0,0,0,0,2,0,2,0
+Cocopah Indian Reservation,Unmeasured Returns,2016,34,59,88,90,77,94,102,98,101,65,64,45
+Cocopah Indian Reservation,Consumptive Use,2016,67,115,169,173,150,181,198,191,195,125,123,88
+Colorado River Indian Reservation,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Colorado River Indian Reservation,Diversion,2012,41,44,55,57,74,78,74,69,70,57,46,38
+Colorado River Indian Reservation,Unmeasured Returns,2012,101,124,167,179,220,263,282,271,219,183,132,127
+Colorado River Indian Reservation,Consumptive Use,2012,142,173,233,251,309,368,395,378,307,256,185,178
+Colorado River Indian Reservation,Diversion,2012,202,253,345,373,455,553,603,580,456,382,271,267
+Colorado River Indian Reservation,Diversion,2012,348,403,536,579,711,841,901,861,711,615,462,424
+Colorado River Indian Reservation,Unmeasured Returns,2012,"1,696","2,234","2,888","3,300","4,122","4,372","4,177","3,955","3,386","2,322","1,603","1,366"
+Colorado River Indian Reservation,Consumptive Use,2012,"6,121","17,041","27,141","34,581","48,843","53,450","45,629","40,795","32,260","14,391","4,547",981
+Colorado River Indian Reservation,Measured Returns,2012,"23,011","21,348","22,477","22,118","21,986","21,669","26,145","27,151","25,915","25,502","23,002","22,487"
+Colorado River Indian Reservation,Diversion,2012,"30,480","40,220","51,970","59,420","74,240","78,650","75,050","71,040","60,850","41,600","28,690","24,410"
+Colorado River Indian Reservation,Consumptive Use,2013,"-2,397","14,607","27,836","41,394","45,943","48,884","44,116","43,460","22,331","18,212","8,717","9,556"
+Colorado River Indian Reservation,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Colorado River Indian Reservation,Diversion,2013,34,33,45,48,58,62,62,62,52,50,38,31
+Colorado River Indian Reservation,Unmeasured Returns,2013,98,119,163,175,214,256,277,268,212,180,129,124
+Colorado River Indian Reservation,Consumptive Use,2013,138,167,227,246,299,359,388,374,296,252,180,174
+Colorado River Indian Reservation,Diversion,2013,202,253,345,373,455,553,603,580,456,382,271,267
+Colorado River Indian Reservation,Diversion,2013,356,408,551,596,726,867,924,887,713,619,445,434
+Colorado River Indian Reservation,Unmeasured Returns,2013,943,"1,917","2,868","3,690","4,092","4,177","3,913","3,896","2,515","2,475","1,713","1,709"
+Colorado River Indian Reservation,Diversion,2013,"16,790","34,440","51,590","66,500","73,670","75,080","70,220","69,950","45,020","44,380","30,700","30,630"
+Colorado River Indian Reservation,Measured Returns,2013,"18,600","18,324","21,437","22,012","24,361","22,886","23,115","23,481","20,887","24,312","20,715","19,799"
+Colorado River Indian Reservation,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Colorado River Indian Reservation,Diversion,2014,32,32,39,47,57,64,62,53,53,48,46,31
+Colorado River Indian Reservation,Unmeasured Returns,2014,99,120,163,178,217,261,281,268,215,182,134,126
+Colorado River Indian Reservation,Consumptive Use,2014,139,169,227,248,303,365,394,375,302,255,188,176
+Colorado River Indian Reservation,Diversion,2014,206,257,351,379,463,562,613,590,464,389,276,271
+Colorado River Indian Reservation,Diversion,2014,366,422,559,614,746,873,942,902,728,622,465,436
+Colorado River Indian Reservation,Unmeasured Returns,2014,"1,650","2,105","2,829","3,498","3,974","3,684","4,194","3,485","2,761","2,560","1,884","1,651"
+Colorado River Indian Reservation,Consumptive Use,2014,"8,304","17,417","29,448","39,550","44,652","42,219","50,974","35,147","21,303","20,058","9,454","7,864"
+Colorado River Indian Reservation,Measured Returns,2014,"20,052","18,750","19,152","20,556","23,620","21,080","21,084","24,730","26,134","23,934","22,917","20,511"
+Colorado River Indian Reservation,Diversion,2014,"29,640","37,850","50,870","62,990","71,500","66,110","75,310","62,460","49,470","45,930","33,790","29,590"
+Colorado River Indian Reservation,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Colorado River Indian Reservation,Diversion,2015,34,30,36,45,51,60,61,72,59,50,41,34
+Colorado River Indian Reservation,Unmeasured Returns,2015,95,113,152,167,203,245,265,261,206,173,125,120
+Colorado River Indian Reservation,Consumptive Use,2015,132,158,213,233,283,342,371,365,288,241,175,169
+Colorado River Indian Reservation,Diversion,2015,193,241,329,355,435,527,575,554,435,364,259,255
+Colorado River Indian Reservation,Diversion,2015,276,315,406,452,531,649,689,681,557,462,354,337
+Colorado River Indian Reservation,Unmeasured Returns,2015,"1,538","2,042","2,728","3,837","3,419","3,674","3,673","3,666","2,709","1,917","1,732","1,837"
+Colorado River Indian Reservation,Consumptive Use,2015,"6,731","14,577","23,822","41,243","34,677","39,292","37,551","40,936","25,503","12,823","12,134","11,571"
+Colorado River Indian Reservation,Measured Returns,2015,"19,687","20,516","23,046","24,692","24,075","23,843","25,555","22,059","21,035","20,122","17,628","19,999"
+Colorado River Indian Reservation,Diversion,2015,"27,680","36,820","49,190","69,320","61,640","66,160","66,090","65,980","48,690","34,400","31,140","33,070"
+Colorado River Indian Reservation,Diversion,2016,14210,41010,55920,56130,65160,65590,68350,58130,47050,36210,28170,28910
+Colorado River Indian Reservation,Diversion,2016,403,473,634,678,829,1013,1093,1045,853,741,535,519
+Colorado River Indian Reservation,Measured Returns,2016,18038,16808,20082,21869,20818,18678,19832,20082,19303,17969,18282,22205
+Colorado River Indian Reservation,Unmeasured Returns,2016,804,2282,3110,3124,3629,3663,3819,3255,2635,2032,1579,1619
+Colorado River Indian Reservation,Consumptive Use,2016,-4229,22393,33362,31815,41542,44262,45792,35838,25965,16950,8844,5605
+Colorado River Indian Reservation,Diversion,2016,199,248,339,366,447,542,592,570,448,375,266,262
+Colorado River Indian Reservation,Diversion,2016,32,32,47,46,58,67,72,63,57,52,43,33
+Colorado River Indian Reservation,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Colorado River Indian Reservation,Unmeasured Returns,2016,96,117,161,172,210,254,277,264,210,178,129,123
+Colorado River Indian Reservation,Consumptive Use,2016,135,163,225,240,295,355,387,369,295,249,180,172
+Fort Mojave Indian Reservation,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Diversion,2012,3,3,4,5,6,8,7,7,5,4,3,2
+Fort Mojave Indian Reservation,Unmeasured Returns,2012,62,82,67,103,180,203,208,193,243,72,106,23
+Fort Mojave Indian Reservation,Diversion,2012,99,58,62,67,214,38,298,306,280,259,183,130
+Fort Mojave Indian Reservation,Consumptive Use,2012,126,165,135,210,365,413,421,393,493,145,215,47
+Fort Mojave Indian Reservation,Diversion,2012,188,247,202,313,545,616,629,586,736,217,321,70
+Fort Mojave Indian Reservation,Unmeasured Returns,2012,279,505,779,538,775,"1,011",597,711,254,721,672,476
+Fort Mojave Indian Reservation,Consumptive Use,2012,324,588,907,627,902,"1,177",696,828,296,840,782,554
+Fort Mojave Indian Reservation,Diversion,2012,600,"1,090","1,682","1,160","1,671","2,180","1,286","1,532",545,"1,557","1,451","1,028"
+Fort Mojave Indian Reservation,Unmeasured Returns,2012,"1,221","1,720","3,222","1,727","4,089","5,585","4,618","4,152","1,575",942,"1,409",420
+Fort Mojave Indian Reservation,Consumptive Use,2012,"1,433","2,020","3,782","2,028","4,800","6,557","5,422","4,874","1,848","1,105","1,653",492
+Fort Mojave Indian Reservation,Diversion,2012,"2,555","3,682","6,942","3,688","8,675","12,104","9,742","8,720","3,143","1,788","2,879",782
+Fort Mojave Indian Reservation,RETURNS,2012,"18,445","15,908","17,103","15,511","15,418","14,535","16,338","18,246","15,956","18,071","16,348","16,420"
+Fort Mojave Indian Reservation,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Diversion,2013,3,2,2,4,4,5,6,4,4,4,2,2
+Fort Mojave Indian Reservation,Unmeasured Returns,2013,34,105,123,122,219,265,209,263,133,136,47,31
+Fort Mojave Indian Reservation,Consumptive Use,2013,68,214,250,248,445,539,424,534,271,275,95,62
+Fort Mojave Indian Reservation,Diversion,2013,102,319,373,370,664,804,633,797,404,411,142,93
+Fort Mojave Indian Reservation,Unmeasured Returns,2013,199,292,814,829,901,943,"1,010",525,182,263,473,640
+Fort Mojave Indian Reservation,Diversion,2013,210,19,180,294,123,363,462,454,408,197,68,99
+Fort Mojave Indian Reservation,Consumptive Use,2013,232,339,947,966,"1,049","1,097","1,176",611,211,307,551,744
+Fort Mojave Indian Reservation,Diversion,2013,428,629,"1,759","1,791","1,946","2,035","2,180","1,132",389,566,"1,022","1,382"
+Fort Mojave Indian Reservation,Unmeasured Returns,2013,485,"2,533","3,021","2,287","3,442","5,324","5,316","3,351","1,937","1,543",283,421
+Fort Mojave Indian Reservation,Consumptive Use,2013,570,"2,528","3,206","2,684","4,221","6,239","6,240","3,808","1,953","1,624",333,494
+Fort Mojave Indian Reservation,Diversion,2013,845,"5,042","6,047","4,677","7,540","11,200","11,094","6,705","3,482","2,970",548,816
+Fort Mojave Indian Reservation,RETURNS,2013,"17,865","16,921","17,940","16,102","16,538","15,545","17,682","17,589","17,886","18,094","17,106","16,710"
+Fort Mojave Indian Reservation,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Diversion,2014,3,3,3,5,6,8,5,4,4,4,2,2
+Fort Mojave Indian Reservation,Unmeasured Returns,2014,34,61,168,143,151,135,193,99,23,177,35,60
+Fort Mojave Indian Reservation,Consumptive Use,2014,70,123,341,291,307,275,391,200,46,358,70,122
+Fort Mojave Indian Reservation,Diversion,2014,104,184,509,434,458,410,584,299,69,535,105,182
+Fort Mojave Indian Reservation,Diversion,2014,118,43,46,66,68,83,242,254,236,207,256,76
+Fort Mojave Indian Reservation,Unmeasured Returns,2014,225,508,833,838,878,696,791,614,534,686,396,629
+Fort Mojave Indian Reservation,Consumptive Use,2014,263,592,970,975,"1,023",810,921,714,622,798,461,732
+Fort Mojave Indian Reservation,Diversion,2014,485,"1,097","1,800","1,808","1,895","1,498","1,707","1,324","1,152","1,480",855,"1,359"
+Fort Mojave Indian Reservation,Unmeasured Returns,2014,906,"3,096","2,532","2,038","3,700","5,130","4,718","3,300","2,234","1,517","1,416",355
+Fort Mojave Indian Reservation,Consumptive Use,2014,"1,064","2,969","2,857","2,449","4,499","5,913","5,538","3,874","2,530","1,796","1,582",417
+Fort Mojave Indian Reservation,Diversion,2014,"1,852","6,022","5,343","4,421","8,131","10,960","10,014","6,920","4,528","3,106","2,742",696
+Fort Mojave Indian Reservation,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Diversion,2015,5,2,3,5,4,5,5,4,5,5,3,3
+Fort Mojave Indian Reservation,Diversion,2015,50,23,129,55,182,311,426,481,328,171,176,109
+Fort Mojave Indian Reservation,Unmeasured Returns,2015,70,111,146,181,153,149,143,193,127,126,97,50
+Fort Mojave Indian Reservation,Consumptive Use,2015,141,226,296,366,312,303,289,391,258,255,197,103
+Fort Mojave Indian Reservation,Diversion,2015,211,337,442,547,465,452,432,584,385,381,294,153
+Fort Mojave Indian Reservation,Unmeasured Returns,2015,238,465,928,"1,073",728,669,505,930,980,270,161,60
+Fort Mojave Indian Reservation,Consumptive Use,2015,278,542,"1,080","1,249",847,779,587,"1,082","1,141",314,188,70
+Fort Mojave Indian Reservation,Diversion,2015,511,"1,005","2,005","2,317","1,571","1,443","1,087","2,008","2,116",579,346,127
+Fort Mojave Indian Reservation,Unmeasured Returns,2015,809,"2,669","2,815","2,731","3,765","4,600","4,450","4,598","2,572","1,035","1,411",785
+Fort Mojave Indian Reservation,Consumptive Use,2015,950,"2,932","3,278","3,258","4,435","5,432","5,227","5,390","2,738","1,193","1,521",921
+Fort Mojave Indian Reservation,Diversion,2015,"1,709","5,578","5,964","5,934","8,018","9,721","9,251","9,507","4,982","2,057","2,756","1,597"
+Fort Mojave Indian Reservation,Diversion,2016,1725,5797,5439,5260,6712,8553,8667,8036,4168,3566,2454,1564
+Fort Mojave Indian Reservation,Diversion,2016,90,22,32,24,33,34,43,59,56,43,21,29
+Fort Mojave Indian Reservation,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Unmeasured Returns,2016,965,2778,2690,2438,3055,3911,3895,3725,1943,1660,1139,733
+Fort Mojave Indian Reservation,Consumptive Use,2016,850,3041,2781,2846,3690,4676,4815,4370,2281,1949,1336,860
+Fort Mojave Indian Reservation,Diversion,2016,13,464,1433,1046,1444,1633,889,1791,1694,713,295,85
+Fort Mojave Indian Reservation,Diversion,2016,5,2,3,4,4,5,5,4,5,5,2,2
+Fort Mojave Indian Reservation,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Unmeasured Returns,2016,8,215,663,485,669,757,413,829,785,332,137,40
+Fort Mojave Indian Reservation,Consumptive Use,2016,10,251,773,565,779,881,481,966,914,386,160,47
+Fort Mojave Indian Reservation,Diversion,2016,175,217,565,331,589,629,637,628,417,430,221,159
+Fort Mojave Indian Reservation,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Fort Mojave Indian Reservation,Unmeasured Returns,2016,58,72,186,109,194,208,210,207,138,142,73,52
+Fort Mojave Indian Reservation,Consumptive Use,2016,117,145,379,222,395,421,427,421,279,288,148,107
+Imperial Irrigation District,Unmeasured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Imperial Irrigation District,Diversion,2012,0,0,0,0,0,0,0,0,"6,131","8,702",0,"1,248"
+Imperial Irrigation District,Measured Returns,2012,0,0,0,0,0,0,0,0,386,539,0,46
+Imperial Irrigation District,Consumptive Use,2012,0,0,0,0,0,0,0,0,"5,745","8,163",0,"1,202"
+Imperial Irrigation District,Measured Returns,2012,"4,375","4,766","6,840","3,888","5,619","14,955","17,620","17,627","15,154","15,088","11,162","4,148"
+Imperial Irrigation District,Consumptive Use,2012,"11,937","11,167","15,065","10,844","9,287","6,359","10,173","17,219","10,828","10,503","9,693","3,781"
+Imperial Irrigation District,Diversion,2012,"146,018","175,122","282,788","332,230","334,585","316,965","303,373","244,271","240,452","243,470","166,409","111,919"
+Imperial Irrigation District,Consumptive Use,2012,"153,580","181,523","291,013","339,186","338,253","308,369","295,926","243,863","236,126","238,885","164,940","111,552"
+Imperial Irrigation District,Unmeasured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Imperial Irrigation District,Measured Returns,2013,157,200,31,71,61,112,132,100,"1,115",795,771,0
+Imperial Irrigation District,Consumptive Use,2013,"3,878","4,605","1,240","2,452","1,574","2,926","2,654","2,737","17,741","19,417","12,246",0
+Imperial Irrigation District,Diversion,2013,"4,035","4,805","1,271","2,523","1,635","3,038","2,786","2,837","18,856","20,212","13,017",0
+Imperial Irrigation District,Measured Returns,2013,"4,996","5,788","5,981","8,177","10,944","10,186","12,638","7,806","10,916","8,838","8,466","7,205"
+Imperial Irrigation District,Consumptive Use,2013,"8,682","12,790","8,684","15,584","16,687","12,189","9,447","2,227","3,072","6,938","8,374","16,669"
+Imperial Irrigation District,Diversion,2013,"128,295","138,943","246,298","291,516","294,139","276,919","265,914","222,207","184,563","224,741","142,898","119,019"
+Imperial Irrigation District,Consumptive Use,2013,"131,981","145,945","249,001","298,923","299,882","278,922","262,723","216,628","176,719","222,841","142,806","128,483"
+Imperial Irrigation District,Unmeasured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Imperial Irrigation District,Measured Returns,2014,683,183,337,197,152,197,271,418,199,465,597,"1,170"
+Imperial Irrigation District,Measured Returns,2014,"5,619","4,790","10,357","7,256","9,408","10,359","12,597","10,734","12,946","9,129","8,781","9,405"
+Imperial Irrigation District,Diversion,2014,"13,691","5,624","7,829","7,248","4,850","5,386","6,270","8,383","3,074","9,831","10,447","11,404"
+Imperial Irrigation District,Diversion,2014,"112,654","147,221","240,771","267,407","300,923","283,010","291,138","215,476","199,711","192,825","153,596","91,696"
+Imperial Irrigation District,Consumptive Use,2014,"118,093","153,047","246,639","275,660","302,145","285,409","288,395","217,518","199,814","197,573","152,414","96,707"
+Imperial Irrigation District,Unmeasured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Imperial Irrigation District,Measured Returns,2015,882,197,50,73,69,432,398,"1,011","1,440","1,313","2,151","2,467"
+Imperial Irrigation District,Measured Returns,2015,"7,309","5,766","6,630","7,100","2,279","10,605","11,059","12,055","15,234","10,314","14,914","14,754"
+Imperial Irrigation District,Diversion,2015,"13,871","5,118","1,712","2,797","6,619","10,442","8,932","20,287","19,417","27,707","25,222","21,686"
+Imperial Irrigation District,Diversion,2015,"114,944","149,559","225,000","273,215","218,767","256,347","248,279","241,971","205,432","217,581","174,857","129,697"
+Imperial Irrigation District,Consumptive Use,2015,"117,003","157,031","234,845","276,132","234,443","253,785","250,515","235,991","203,747","217,573","169,019","130,849"
+Imperial Irrigation District,Diversion,2016,84186,168966,241342,242006,275253,280128,254111,235997,198192,203110,156965,121306
+Imperial Irrigation District,Measured Returns,2016,1302,6675,4367,3618,10515,17121,15585,14325,7483,1368,6282,12271
+Imperial Irrigation District,Unmeasured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Imperial Irrigation District,Consumptive Use,2016,94281,181095,250506,253133,281389,273686,250935,231403,199468,211683,161695,114984
+Imperial Irrigation District,Diversion,2016,21688,12977,15651,8261,9849,7425,2634,2633,6912,15548,16537,15704
+Imperial Irrigation District,Measured Returns,2016,335,513,283,123,376,454,162,160,261,105,662,1589
+Lake Havasu City,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Lake Havasu City,Unmeasured Returns,2012,323,316,368,382,470,505,498,470,464,423,366,312
+Lake Havasu City,Consumptive Use,2012,526,516,601,622,767,824,812,767,756,690,596,509
+Lake Havasu City,Diversion,2012,849,832,969,"1,004","1,237","1,329","1,310","1,237","1,220","1,113",962,821
+Lake Havasu City,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Lake Havasu City,Unmeasured Returns,2013,309,291,369,392,467,499,502,492,431,414,348,314
+Lake Havasu City,Consumptive Use,2013,504,474,601,639,761,815,818,802,703,675,567,511
+Lake Havasu City,Diversion,2013,813,765,970,"1,031","1,228","1,314","1,320","1,294","1,134","1,089",915,825
+Lake Havasu City,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Lake Havasu City,Unmeasured Returns,2014,309,314,362,385,432,450,499,453,419,410,349,301
+Lake Havasu City,Consumptive Use,2014,504,511,590,627,706,734,815,740,684,670,570,492
+Lake Havasu City,Diversion,2014,813,825,952,"1,012","1,138","1,184","1,314","1,193","1,103","1,080",919,793
+Lake Havasu City,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Lake Havasu City,Unmeasured Returns,2015,301,277,326,345,377,420,450,458,436,380,328,306
+Lake Havasu City,Consumptive Use,2015,491,451,531,563,614,684,734,748,711,621,534,500
+Lake Havasu City,Diversion,2015,792,728,857,908,991,"1,104","1,184","1,206","1,147","1,001",862,806
+Lake Havasu City,Diversion,2016,741,794,1013,965,1093,1298,1340,1220,1101,1049,904,814
+Lake Havasu City,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Lake Havasu City,Unmeasured Returns,2016,282,302,385,367,415,493,509,464,418,398,344,309
+Lake Havasu City,Consumptive Use,2016,459,492,628,598,678,805,831,756,683,651,560,505
+Met. Water District of So. Cal. ,Unmeasured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Met. Water District of So. Cal. ,Measured Returns,2015,243,220,241,209,220,222,208,218,215,221,210,242
+Met. Water District of So. Cal. ,Consumptive Use,2015,"104,691","54,039","85,897","104,314","108,479","103,404","107,296","107,068","103,641","102,015","97,817","100,267"
+Met. Water District of So. Cal. ,Diversion,2015,"104,934","54,259","86,138","104,523","108,699","103,626","107,504","107,286","103,856","102,236","98,027","100,509"
+Met. Water District of So. Cal. ,Diversion,2016,96884,13000,88401,92503,97213,94779,99653,85106,88504,79594,78314,85868
+Met. Water District of So. Cal. ,Measured Returns,2016,242,221,233,212,224,201,195,236,230,256,258,288
+Met. Water District of So. Cal. ,Unmeasured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Met. Water District of So. Cal. ,Consumptive Use,2016,96642,12779,88168,92291,96989,94578,99458,84870,88274,79338,78056,85580
+Mohave Valley I.D.D.,Measured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Mohave Valley I.D.D.,Unmeasured Returns,2012,451,462,823,893,"1,092","1,118","1,076","1,194","1,118",743,610,185
+Mohave Valley I.D.D.,Consumptive Use,2012,530,542,967,"1,048","1,282","1,312","1,264","1,401","1,313",873,715,217
+Mohave Valley I.D.D.,Diversion,2012,981,"1,004","1,790","1,941","2,374","2,430","2,340","2,595","2,431","1,616","1,325",402
+Mohave Valley I.D.D.,Measured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Mohave Valley I.D.D.,Unmeasured Returns,2013,372,374,"1,318","1,015","1,435","1,717","1,737","1,335",649,"1,259",866,557
+Mohave Valley I.D.D.,Consumptive Use,2013,436,283,"1,223","1,180","1,859","2,002","2,043","1,513",762,"1,317",886,655
+Mohave Valley I.D.D.,Diversion,2013,808,657,"2,541","2,195","3,294","3,719","3,780","2,848","1,411","2,576","1,752","1,212"
+Mohave Valley I.D.D.,Measured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Mohave Valley I.D.D.,Unmeasured Returns,2014,894,961,"1,516","1,497","1,754","2,189","1,976","1,631","1,410","1,224","1,114",315
+Mohave Valley I.D.D.,Consumptive Use,2014,"1,049",990,"1,408","1,878","2,241","2,442","2,000","1,935","1,648","1,444","1,205",371
+Mohave Valley I.D.D.,Diversion,2014,"1,943","1,951","2,924","3,375","3,995","4,631","3,976","3,566","3,058","2,668","2,319",686
+Mohave Valley I.D.D.,Measured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Mohave Valley I.D.D.,Unmeasured Returns,2015,641,917,"1,212","1,399","1,480","1,822","1,581","1,868","1,753",780,738,470
+Mohave Valley I.D.D.,Consumptive Use,2015,752,984,"1,392","1,658","1,742","2,153","1,858","2,187","1,933",902,867,551
+Mohave Valley I.D.D.,Diversion,2015,"1,393","1,901","2,604","3,057","3,222","3,975","3,439","4,055","3,686","1,682","1,605","1,021"
+Mohave Valley I.D.D.,Diversion,2016,1288,2082,3616,2457,3885,4873,4303,4087,4079,2626,2181,1399
+Mohave Valley I.D.D.,Measured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Mohave Valley I.D.D.,Unmeasured Returns,2016,592,1011,1882,1137,1765,2220,1886,1886,2175,1304,1096,644
+Mohave Valley I.D.D.,Consumptive Use,2016,696,1071,1734,1320,2120,2653,2417,2201,1904,1322,1085,755
+North Gila Valley I.D.D.,Consumptive Use,2012,322,629,"1,187","1,235","1,874","1,548","1,332",677,900,"1,050",738,144
+North Gila Valley I.D.D.,Unmeasured Returns,2012,351,414,571,606,763,716,631,375,483,636,481,344
+North Gila Valley I.D.D.,Measured Returns,2012,"1,890","1,979","2,412","2,583","2,930","2,961","2,641","1,686","2,144","2,953","2,292","2,021"
+North Gila Valley I.D.D.,Diversion,2012,"2,563","3,022","4,170","4,424","5,567","5,225","4,604","2,738","3,527","4,639","3,511","2,509"
+North Gila Valley I.D.D.,Unmeasured Returns,2013,302,344,561,701,814,737,685,470,551,675,452,362
+North Gila Valley I.D.D.,Consumptive Use,2013,332,547,"1,172","1,880","2,011","1,823","1,594",733,"1,021",958,155,-21
+North Gila Valley I.D.D.,Measured Returns,2013,"1,570","1,622","2,364","2,538","3,114","2,820","2,721","2,227","2,451","3,296","2,691","2,304"
+North Gila Valley I.D.D.,Diversion,2013,"2,204","2,513","4,097","5,119","5,939","5,380","5,000","3,430","4,023","4,929","3,298","2,645"
+North Gila Valley I.D.D.,Consumptive Use,2014,166,606,"1,107","1,632","1,981","1,527","1,364",466,840,"1,325",494,-58
+North Gila Valley I.D.D.,Unmeasured Returns,2014,367,456,533,633,818,688,645,366,528,711,550,391
+North Gila Valley I.D.D.,Measured Returns,2014,"2,147","2,270","2,252","2,358","3,169","2,810","2,702","1,840","2,488","3,155","2,969","2,522"
+North Gila Valley I.D.D.,Diversion,2014,"2,680","3,332","3,892","4,623","5,968","5,025","4,711","2,672","3,856","5,191","4,013","2,855"
+North Gila Valley I.D.D.,Consumptive Use,2015,-91,897,"1,508","2,000","1,454","1,209","1,302",764,"1,116","1,132",680,331
+North Gila Valley I.D.D.,Unmeasured Returns,2015,267,452,667,777,628,545,527,362,474,557,463,321
+North Gila Valley I.D.D.,Measured Returns,2015,"1,774","1,951","2,693","2,893","2,503","2,224","2,017","1,513","1,870","2,379","2,233","1,690"
+North Gila Valley I.D.D.,Diversion,2015,"1,950","3,300","4,868","5,670","4,585","3,978","3,846","2,639","3,460","4,068","3,376","2,342"
+North Gila Valley I.D.D.,Diversion,2016,1405,2596,4061,4151,4814,5073,4443,2410,3381,4092,3626,2081
+North Gila Valley I.D.D.,Diversion,2016,13,17,23,25,30,37,40,38,30,25,18,18
+North Gila Valley I.D.D.,Measured Returns,2016,1193,1536,2252,2182,2422,2655,2462,1773,1965,2656,2334,1539
+North Gila Valley I.D.D.,Unmeasured Returns,2016,197,362,564,578,671,708,623,343,473,570,503,291
+North Gila Valley I.D.D.,Consumptive Use,2016,28,715,1268,1416,1751,1747,1398,332,973,891,807,269
+Palo Verde Irrigation District,Consumptive Use,2012,"1,396","22,646","33,727","33,156","54,177","56,779","42,939","49,197","39,142","23,008","7,045",-989
+Palo Verde Irrigation District,Unmeasured Returns,2012,"1,774","3,259","4,238","4,086","5,622","5,835","5,242","5,645","5,056","4,137","2,858","2,307"
+Palo Verde Irrigation District,Measured Returns,2012,"28,500","32,285","37,705","35,728","40,601","41,586","45,419","45,958","46,092","46,725","41,127","39,872"
+Palo Verde Irrigation District,Diversion,2012,"31,670","58,190","75,670","72,970","100,400","104,200","93,600","100,800","90,290","73,870","51,030","41,190"
+Palo Verde Irrigation District,Unmeasured Returns,2013,"2,152","3,132","4,662","4,987","6,502","6,580","6,115","6,126","4,857","4,189","2,398","2,746"
+Palo Verde Irrigation District,Consumptive Use,2013,"5,116","21,068","39,723","44,495","65,329","67,037","56,603","58,503","38,503","26,068",695,"10,427"
+Palo Verde Irrigation District,Measured Returns,2013,"31,162","31,730","38,865","39,578","44,269","43,883","46,482","44,771","43,380","44,543","39,727","35,867"
+Palo Verde Irrigation District,Diversion,2013,"38,430","55,930","83,250","89,060","116,100","117,500","109,200","109,400","86,740","74,800","42,820","49,040"
+Palo Verde Irrigation District,Unmeasured Returns,2014,"2,447","3,256","4,509","5,280","6,294","6,367","6,395","4,525","4,945","3,832","2,792","2,480"
+Palo Verde Irrigation District,Consumptive Use,2014,"7,695","19,634","36,211","49,298","63,698","66,360","62,985","34,048","44,413","24,441","10,114","5,664"
+Palo Verde Irrigation District,Measured Returns,2014,"33,558","35,260","39,800","39,702","42,408","40,973","44,820","42,227","38,942","40,157","36,954","36,146"
+Palo Verde Irrigation District,Diversion,2014,"43,700","58,150","80,520","94,280","112,400","113,700","114,200","80,800","88,300","68,430","49,860","44,290"
+Palo Verde Irrigation District,Unmeasured Returns,2015,"1,995","2,947","3,873","5,236","4,966","5,436","5,600","5,310","4,350","3,442","2,818","2,570"
+Palo Verde Irrigation District,Consumptive Use,2015,"3,236","20,962","31,930","52,312","46,457","54,203","55,124","52,560","36,980","21,537","13,624","10,106"
+Palo Verde Irrigation District,Measured Returns,2015,"30,399","28,711","33,357","35,952","37,257","37,431","39,276","36,960","36,350","36,481","33,878","33,214"
+Palo Verde Irrigation District,Diversion,2015,"35,630","52,620","69,160","93,500","88,680","97,070","100,000","94,830","77,680","61,460","50,320","45,890"
+Palo Verde Irrigation District,Diversion,2016,25610,45260,62710,67820,85960,91900,96870,94810,72010,58870,42330,31070
+Palo Verde Irrigation District,Measured Returns,2016,27258,27944,29315,28611,33520,34328,37836,37610,36488,34841,30320,33328
+Palo Verde Irrigation District,Unmeasured Returns,2016,2121,2861,4135,4762,6207,6185,7079,6965,5648,4336,2998,2409
+Palo Verde Irrigation District,Consumptive Use,2016,-3769,14455,29260,34447,46233,51387,51955,50235,29874,19693,9012,-4667
+Robert B. Griffith Water Project,Diversion,2012,"25,863","24,920","31,051","33,813","43,531","40,277","43,231","40,294","32,425","37,088","29,682","25,678"
+Robert B. Griffith Water Project,Diversion,2013,"25,090","23,610","31,114","34,521","41,645","41,040","44,292","42,315","31,807","35,280","26,784","23,760"
+Robert B. Griffith Water Project,Diversion,2014,"24,892","23,532","31,547","35,088","43,851","41,504","42,967","40,439","35,581","37,584","28,860","24,192"
+Robert B. Griffith Water Project,Diversion,2015,"23,364","23,059","32,320","36,014","40,792","40,193","44,540","43,712","40,517","36,781","28,914","25,798"
+Robert B. Griffith Water Project,Diversion,2016,26034,26311,34090,33995,38079,42175,46500,45224,37607,39922,32339,26774
+Unit 'B' I.D.D.,Unmeasured Returns,2012,0,0,0,0,0,0,0,0,0,0,0,0
+Unit 'B' I.D.D.,Consumptive Use,2012,704,557,779,"1,696","2,678","2,610","2,296","2,483",922,"2,414","1,676","1,172"
+Unit 'B' I.D.D.,Measured Returns,2012,771,974,"1,177",699,306,550,750,913,"1,091",201,169,178
+Unit 'B' I.D.D.,Diversion,2012,"1,475","1,531","1,956","2,395","2,984","3,160","3,046","3,396","2,013","2,615","1,845","1,350"
+Unit 'B' I.D.D.,Unmeasured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Unit 'B' I.D.D.,Measured Returns,2013,293,384,766,805,819,975,949,"1,225","1,117",630,236,603
+Unit 'B' I.D.D.,Consumptive Use,2013,916,"1,026",911,"1,823","2,480","2,166","2,624","1,865","1,527","2,137","1,616",628
+Unit 'B' I.D.D.,Diversion,2013,"1,209","1,410","1,677","2,628","3,299","3,141","3,573","3,090","2,644","2,767","1,852","1,231"
+Unit 'B' I.D.D.,Unmeasured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Unit 'B' I.D.D.,Consumptive Use,2014,342,615,"1,121","2,094","2,617","2,488","2,900","2,245","2,072","2,081","1,520",274
+Unit 'B' I.D.D.,Measured Returns 5,2014,"1,182","1,022",658,438,316,930,911,689,"1,057",280,225,618
+Unit 'B' I.D.D.,Diversion,2014,"1,524","1,637","1,779","2,532","2,933","3,418","3,811","2,934","3,129","2,361","1,745",892
+Unit 'B' I.D.D.,Unmeasured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Unit 'B' I.D.D.,Measured Returns 5,2015,423,553,474,711,482,999,"1,610","1,481",609,112,624,665
+Unit 'B' I.D.D.,Consumptive Use,2015,750,991,"1,580","2,207","2,277","2,120","1,976","1,983","1,593","2,074","1,432",557
+Unit 'B' I.D.D.,Diversion,2015,"1,173","1,544","2,054","2,918","2,759","3,119","3,586","3,464","2,202","2,186","2,056","1,222"
+Unit 'B' I.D.D.,Diversion,2016,926,1712,2021,2231,2928,3395,3400,3622,3092,2240,1649,981
+Unit 'B' I.D.D.,Measured Returns,2016,707,683,835,744,600,834,786,789,660,171,259,263
+Unit 'B' I.D.D.,Unmeasured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Unit 'B' I.D.D.,Consumptive Use,2016,219,1029,1186,1487,2328,2561,2614,2833,2432,2069,1390,718
+Wellton-Mohawk I.D.D.,Unmeasured Returns,2013,0,0,0,0,0,0,0,0,0,0,0,0
+Wellton-Mohawk I.D.D.,DOME RETURN,2013,337,334,332,255,383,214,206,189,424,308,559,687
+Wellton-Mohawk I.D.D.,GGMC RETURN,2013,"1,272","1,082","1,750","1,468","1,129","2,183","2,328","4,262","2,481","1,923","1,551","1,340"
+Wellton-Mohawk I.D.D.,Consumptive Use,2013,"7,013","9,787","25,632","34,530","33,228","31,135","23,624","25,036","23,379","21,234","8,108","1,331"
+Wellton-Mohawk I.D.D.,MOD RETURN 4,2013,"10,170","9,000","9,440","9,400","9,700","8,870","9,690","9,010","8,140","8,450","8,230","7,760"
+Wellton-Mohawk I.D.D.,TOTAL RETURNS,2013,"11,779","10,416","11,522","11,123","11,212","11,267","12,224","13,461","11,045","10,681","10,340","9,787"
+Wellton-Mohawk I.D.D.,Diversion,2013,"18,792","20,203","37,154","45,653","44,440","42,402","35,848","38,497","34,424","31,915","18,448","11,118"
+Wellton-Mohawk I.D.D.,Unmeasured Returns,2014,0,0,0,0,0,0,0,0,0,0,0,0
+Wellton-Mohawk I.D.D.,Dome Return,2014,612,415,323,420,346,251,184,209,266,393,277,300
+Wellton-Mohawk I.D.D.,GGMC Return,2014,"1,433","1,771","1,381",922,"1,085","1,349",911,640,763,529,720,"1,873"
+Wellton-Mohawk I.D.D.,MOD Return 3,2014,"8,490","7,760","9,900","8,840","9,770","9,280","9,310","9,550","8,860","9,770","9,790","10,070"
+Wellton-Mohawk I.D.D.,Total Returns,2014,"10,535","9,946","11,604","10,182","11,201","10,880","10,405","10,399","9,889","10,692","10,787","12,243"
+Wellton-Mohawk I.D.D.,Consumptive Use,2014,"11,348","13,267","24,549","32,596","32,580","29,738","29,146","18,065","26,421","22,192","11,828","4,593"
+Wellton-Mohawk I.D.D.,Diversion,2014,"21,883","23,213","36,153","42,778","43,781","40,618","39,551","28,464","36,310","32,884","22,615","16,836"
+Wellton-Mohawk I.D.D.,Unmeasured Returns,2015,0,0,0,0,0,0,0,0,0,0,0,0
+Wellton-Mohawk I.D.D.,Dome Return,2015,327,310,249,250,476,251,235,205,133,358,416,281
+Wellton-Mohawk I.D.D.,GGMC Return,2015,"1,573",844,"1,421","2,631","1,839","1,673",868,"1,412",942,"1,151","1,229","1,100"
+Wellton-Mohawk I.D.D.,Consumptive Use,2015,"5,954","14,104","26,964","34,489","24,019","22,698","20,900","22,575","26,960","22,334","12,964","10,602"
+Wellton-Mohawk I.D.D.,MOD Return 3,2015,"9,760","8,870","9,690","8,440","9,300","9,140","8,940","8,780","9,440","9,500","6,960","7,350"
+Wellton-Mohawk I.D.D.,Total Returns,2015,"11,660","10,024","11,360","11,321","11,615","11,064","10,043","10,397","10,515","11,009","8,605","8,731"
+Wellton-Mohawk I.D.D.,Diversion,2015,"17,614","24,128","38,324","45,810","35,634","33,762","30,943","32,972","37,475","33,343","21,569","19,333"
+Wellton-Mohawk I.D.D.,Diversion,2016,14423,27893,39880,40794,38912,37553,36101,33844,38380,36813,23049,17061
+Wellton-Mohawk I.D.D.,GGMC Return,2016,904,1307,3468,3147,2260,1716,1568,1699,1966,1656,714,1057
+Wellton-Mohawk I.D.D.,Dome Return,2016,441,649,417,504,455,437,447,315,588,558,678,570
+Wellton-Mohawk I.D.D.,MOD Return,2016,2770,8780,8440,8570,9220,8080,8470,8350,9220,9820,7900,9510
+Wellton-Mohawk I.D.D.,Total Returns,2016,4115,10736,12325,12221,11935,10233,10485,10364,11774,12034,9292,11137
+Wellton-Mohawk I.D.D.,Unmeasured Returns,2016,0,0,0,0,0,0,0,0,0,0,0,0
+Wellton-Mohawk I.D.D.,Consumptive Use,2016,10308,17157,27555,28573,26977,27320,25616,23480,26606,24779,13757,5924
+Yuma County WUA,Diversion,2013,293,259,165,5,0,66,266,122,9,110,102,0
+Yuma County WUA,Unmeasured Returns,2013,431,507,775,"1,033",865,665,583,517,513,837,536,418
+Yuma County WUA,Consumptive Use,2013,"8,740","13,080","25,131","37,967","30,241","22,240","17,619","15,357","15,993","27,475","12,731","9,797"
+Yuma County WUA,Measured Returns,2013,"11,338","10,568","10,976","10,170","10,102","8,763","9,547","8,728","7,945","11,539","12,264","9,677"
+Yuma County WUA,Diversion,2013,"20,216","23,896","36,717","49,165","41,208","31,602","27,483","24,480","24,442","39,741","25,429","19,892"
+Yuma County WUA,Diversion,2014,79,123,99,0,98,100,87,71,0,90,89,120
+Yuma County WUA,Unmeasured Returns,2014,435,504,797,951,731,601,709,367,529,833,644,432
+Yuma County WUA,Measured Returns,2014,"7,112","8,892","10,543","10,552","10,354","7,904","9,602","6,905","7,524","12,097","13,819","11,634"
+Yuma County WUA,Consumptive Use,2014,"13,176","14,618","26,614","33,767","23,744","20,109","23,463","10,189","17,136","26,750","16,204","8,488"
+Yuma County WUA,Diversion,2014,"20,644","23,891","37,855","45,270","34,731","28,514","33,687","17,390","25,189","39,590","30,578","20,434"
+Yuma County WUA,Diversion,2015,50,43,47,7,18,87,113,120,21,112,109,76
+Yuma County WUA,Unmeasured Returns,2015,441,565,835,"1,032",652,564,681,449,453,799,621,458
+Yuma County WUA,Consumptive Use,2015,"9,470","16,565","28,344","37,269","19,802","16,836","24,258","13,716","10,031","25,337","17,131","9,559"
+Yuma County WUA,Measured Returns,2015,"11,088","9,796","10,576","10,849","10,597","9,445","7,481","7,234","11,086","11,901","11,800","11,800"
+Yuma County WUA,Diversion,2015,"20,949","26,883","39,708","49,143","31,033","26,758","32,307","21,279","21,549","37,925","29,443","21,741"
+Yuma County WUA,Diversion,2016,15402,24242,36136,43243,36188,29140,31981,21879,26777,37125,29388,16930
+Yuma County WUA,Diversion,2016,169,50,62,109,247,50,67,146,6,52,169,255
+Yuma County WUA,Measured Returns,2016,9244,9306,8797,8998,10402,8963,8784,8292,10062,11854,12881,11850
+Yuma County WUA,Unmeasured Returns,2016,327,510,760,910,765,613,673,463,562,781,621,361
+Yuma County WUA,Consumptive Use,2016,6000,14476,26641,33444,25268,19614,22591,13270,16159,24542,16055,4974
+Yuma Irrigation District,Diversion,2012,72,95,114,176,88,59,60,45,63,34,25,7
+Yuma Irrigation District,Unmeasured Returns,2012,769,"1,058","1,501","1,688","1,961","1,564","1,016","1,440","1,286","1,311",935,731
+Yuma Irrigation District,Measured Returns,2012,"1,108","1,311","1,664","1,913","2,160","1,701","1,122","1,581","1,500","1,534","1,114","1,192"
+Yuma Irrigation District,Consumptive Use,2012,"1,734","2,600","3,884","4,324","5,085","4,079","2,632","3,740","3,251","3,309","2,341","1,509"
+Yuma Irrigation District,Diversion,2012,"3,539","4,874","6,935","7,749","9,118","7,285","4,710","6,716","5,974","6,120","4,365","3,425"
+Yuma Irrigation District,Diversion,2013,16,66,58,132,49,147,83,128,53,46,22,14
+Yuma Irrigation District,Unmeasured Returns,2013,667,848,"1,504","2,027","1,736","1,447","1,285","1,126","1,152","1,273",792,709
+Yuma Irrigation District,Measured Returns,2013,838,930,"1,679","1,981","1,686","1,713","1,636","1,662","1,538","1,480","1,093","1,189"
+Yuma Irrigation District,Consumptive Use,2013,"1,628","2,204","3,877","5,510","4,726","3,634","3,113","2,499","2,718","3,223","1,833","1,430"
+Yuma Irrigation District,Diversion,2013,"3,117","3,916","7,002","9,386","8,099","6,647","5,951","5,159","5,355","5,930","3,696","3,314"
+Yuma Irrigation District,Diversion,2014,10,21,72,117,93,28,28,28,66,35,21,4
+Yuma Irrigation District,Unmeasured Returns,2014,844,"1,012","1,531","1,901","1,722","1,343","1,316",940,"1,227","1,354","1,016",725
+Yuma Irrigation District,Measured Returns,2014,"1,100","1,329","1,614","1,720","1,637","1,369","1,260","1,007","1,205","1,290","1,110","1,173"
+Yuma Irrigation District,Consumptive Use,2014,"2,017","2,410","4,043","5,303","4,725","3,595","3,603","2,467","3,329","3,715","2,643","1,505"
+Yuma Irrigation District,Diversion,2014,"3,951","4,730","7,116","8,807","7,991","6,279","6,151","4,386","5,695","6,324","4,748","3,399"
+Yuma Irrigation District,Diversion,2015,21,49,150,230,58,44,71,45,48,31,11,57
+Yuma Irrigation District,Unmeasured Returns,2015,641,"1,071","1,629","2,061","1,541","1,164","1,473",818,"1,295","1,387","1,082",771
+Yuma Irrigation District,Measured Returns,2015,974,"1,121","1,676","2,277","1,744","1,218","1,401",951,"1,266","1,504","1,285",941
+Yuma Irrigation District,Consumptive Use,2015,"1,394","2,834","4,344","5,338","3,949","3,082","4,042","2,072","3,518","3,621","2,712","1,907"
+Yuma Irrigation District,Diversion,2015,"2,988","4,977","7,499","9,446","7,176","5,420","6,845","3,796","6,031","6,481","5,068","3,562"
+Yuma Irrigation District,Diversion,2016,2681,4811,8094,9346,8760,6033,6791,4285,5028,6000,4058,3127
+Yuma Irrigation District,Diversion,2016,30,77,169,229,136,89,153,121,149,156,95,57
+Yuma Irrigation District,Measured Returns,2016,745,1107,2274,2424,2070,1432,1560,1159,1307,1472,984,899
+Yuma Irrigation District,Unmeasured Returns,2016,577,1041,1760,2039,1895,1304,1479,938,1103,1311,885,678
+Yuma Irrigation District,Consumptive Use,2016,1389,2740,4229,5112,4931,3386,3905,2309,2767,3373,2284,1607
+Yuma Mesa I.D.D.,Unmeasured Returns,2012,"1,788","1,894","2,359","2,972","3,800","3,781","3,630","3,980","2,561","2,764","1,643","1,414"
+Yuma Mesa I.D.D.,Measured Returns,2012,"4,652","5,795","6,919","4,305","2,162","3,425","4,638","5,508","6,486","1,291",949,"1,164"
+Yuma Mesa I.D.D.,Consumptive Use,2012,"4,736","4,147","5,466","11,298","17,788","16,427","14,417","15,388","6,960","13,218","7,678","6,258"
+Yuma Mesa I.D.D.,Diversion,2012,"11,176","11,836","14,744","18,575","23,750","23,633","22,685","24,876","16,007","17,273","10,270","8,836"
+Yuma Mesa I.D.D.,Unmeasured Returns,2013,"1,615","1,603","2,185","3,168","3,843","4,232","4,290","3,262","2,853","3,038","1,844","1,493"
+Yuma Mesa I.D.D.,Measured Returns,2013,"1,954","2,322","4,606","4,774","4,825","6,126","5,952","7,361","6,602","3,839","1,451","3,788"
+Yuma Mesa I.D.D.,Consumptive Use,2013,"6,522","6,096","6,867","11,855","15,349","16,090","16,573","9,767","8,375","12,113","8,228","4,050"
+Yuma Mesa I.D.D.,Diversion,2013,"10,091","10,021","13,658","19,797","24,017","26,448","26,815","20,390","17,830","18,990","11,523","9,331"
+Yuma Mesa I.D.D.,Unmeasured Returns,2014,"1,886","1,747","2,284","2,893","3,470","3,550","3,918","3,151","2,765","2,302","1,758","1,284"
+Yuma Mesa I.D.D.,Consumptive Use,2014,"2,922","3,216","8,050","12,598","16,255","13,238","15,316","12,546","8,539","10,479","7,903","2,800"
+Yuma Mesa I.D.D.,Measured Returns 5,2014,"6,977","5,958","3,943","2,592","1,964","5,397","5,252","3,999","5,978","1,609","1,324","3,941"
+Yuma Mesa I.D.D.,Diversion,2014,"11,785","10,921","14,277","18,083","21,689","22,185","24,486","19,696","17,282","14,390","10,985","8,025"
+Yuma Mesa I.D.D.,Unmeasured Returns,2015,"1,422","1,572","2,297","2,877","2,766","3,318","3,559","3,225","2,396","2,184","1,884","1,484"
+Yuma Mesa I.D.D.,Measured Returns 5,2015,"2,666","3,183","2,823","4,143","2,844","5,865","9,194","8,425","3,539",692,"3,546","3,946"
+Yuma Mesa I.D.D.,Consumptive Use,2015,"4,800","5,068","9,235","10,959","11,676","11,557","9,492","8,509","9,042","10,773","6,348","3,842"
+Yuma Mesa I.D.D.,Diversion,2015,"8,888","9,823","14,355","17,979","17,286","20,740","22,245","20,159","14,977","13,649","11,778","9,272"
+Yuma Mesa I.D.D.,Diversion,2016,7443,11001,16297,16814,19703,23381,22805,24300,17740,14306,11279,7481
+Yuma Mesa I.D.D.,Measured Returns,2016,4192,3951,5296,4647,3642,4981,4663,4729,3754,1069,1548,1652
+Yuma Mesa I.D.D.,Unmeasured Returns,2016,1191,1760,2608,2690,3152,3741,3649,3888,2838,2289,1805,1197
+Yuma Mesa I.D.D.,Consumptive Use,2016,2060,5290,8393,9477,12909,14659,14493,15683,11148,10948,7926,4632

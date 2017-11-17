@@ -22,10 +22,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+#LCRB View
 
-# Lower Colorado River Basin
+##Lower Colorado River Basin View
 This page is designed to provide current and historic system and water use stats. Data is pulled from.... 
-
 
 ##Current Reservoir Status  
 
@@ -43,7 +43,7 @@ library(raster)
 library(rvest)
 library(stringr)
 library(lubridate)
-library(gridExtra)
+
 
 ```
 
@@ -62,12 +62,16 @@ ui1 <- fluidPage(
       ),style="overflow-x:hidden;"
     ),
     column(width=12,
-      plotOutput("bigdonut"), align="right", style='padding:0px;'
-    ),style="overflow-x:hidden;"
+      div(
+        style = "position:relative",
+        plotOutput("bigdonut", hover = hoverOpts("plot_hover", delay = 100, delayType = "debounce")),
+        uiOutput("hover_info"), align="right", style='padding:0px;'
+      )
+    ), style="overflow-x:hidden;"
   ), 
   fluidRow(
     column(width=12,
-      plotOutput("donuts"), align ="center", style='padding:0px; height:300px; width:790px; object-fit: none; object-position: 200% 150%;'
+      plotOutput("donuts"), align ="center", style='padding:0px; height:310px; width:790px; object-fit: none;'
     ), style="overflow-x:hidden; overflow-y:hidden;"
   )
 )  
@@ -92,13 +96,13 @@ server1 <- shinyServer(function(input, output, session){
   PREblock$flag <- str_detect(PREblock$line, paste0("^",'\\s*', '[0-9]')) ## define rows which contain data 
 
 
-  data <- PREblock %>% filter(flag=="TRUE") 
+  data <- subset(PREblock, PREblock$flag=="TRUE") 
   data$table <- c(rep(1, dim(data)[1]/4), rep(2, dim(data)[1]/4), rep(3, dim(data)[1]/4), rep(4,dim(data)[1]/4))
 
   ### Tables do not have equal spaces between each parameter and there is the possility of blanks being treated as delimiters.   However, fields begin and end at specific character numbers for each table. Use sapply in conjunction with substring to define start and stop characters for each substring/field. 
 
   #TABLE1 - ACCUMULATIONS
-  table1 <- data %>% filter(table==1)
+  table1 <- subset(data, data$table==1)
   table1 <- t(sapply(table1$line, substring, c(1,4,12,21,30,37,44,52,59,64,72,79,86,94,100,106,113,123,130,137,146,153,160), c(3,11,19,29,36,43,51,58,63,71,78,85,93,99,105,112,122,129,136,145,152,159,166)))
   colnames(table1) <- c("Date", "Glen Canyon CFS", "Glen Canyon Accum AF", "Lake Mead Elevation Feet", "Hoover Dam CFS", "Hoover Dam Release AF", "Hoover Dam Accum", "Hoover Damnn Gross Gen", "Hoover Dam Rate KWH/AF", "Lake Mohave Elevation Feet", "Davis Dam CFS", "Davis Dam AF", "Davis Dam Release Accum", "Davis Dam Gross Gen", "MWD AF", "MWD Accum", "Lake Havasu Elevation Feet", "Parker Dam CFS", "Parker AF", "Parker Release Release Accum", "Parker Dam Gross Gen", "CAP AF", "CAP Accum") ## hard coding field names
   table1 <- apply(table1,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
@@ -107,7 +111,7 @@ server1 <- shinyServer(function(input, output, session){
 
 
   #TABLE 2 - RESERVOIR ELEVATIONS AND CONTENTS
-  table2 <- data %>% filter(table==2)
+  table2 <- subset(data, data$table==2)
   table2 <- t(sapply(table2$line, substring, c(1,9,20,29,40,51,63,72,83,92,102,113,122,134,143,152),c(8,19,28,39,50,62,71,82,91,101,112,121,133,142,151,160)))
   colnames(table2) <- c("Date", "Total System Storage", "Total Available Space", "Lake Mead Elevation Feet", "Hoover Content 1000 AF", "Lake Mead Release CFS", "Lake Mohave Elevation Feet", "Davis Content 1000 AF", "Lake Mohave Release CFS", "Lake Havasu Elevation Feet", "Parker Content 1000 AF", "Lake Havasu Release CFS", "Senator Wash Elevation Feet", "Senator Content AF", "Wash Pumped CFS", "Senator Wash Release CFS")
   table2 <- apply(table2,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
@@ -116,7 +120,7 @@ server1 <- shinyServer(function(input, output, session){
 
 
   #TABLE 3 - STORAGE PROJECT DATA
-  table3 <- data %>% filter(table==3)
+  table3 <- subset(data, data$table==3)
   table3 <- t(sapply(table3$line, substring, c(1,5,12,22,30,39,52,59,68,81,88,97,109,118,126,138,147),c(4,11,21,29,38,51,58,67,80,87,96,108,117,125,137,146,154)))
   colnames(table3) <- c("Date", "Computed Inflow CFS", "Lake Powell Elevation Feet", "Lake Powell Content 1000 AF", "Lake Powell Release CFS", "Flaming Gorge Elevation Feet", "Flaming Gorge Content 1000 AF", "Flaming Gorge Release CFS", "Navajo Elevation Feet", "Navajo Content 1000 AF", "Navajo Release CFS", "Blue Mesa Elevation Feet", "Blue Mesa Content 1000 AF", "Blue Mesa Release CFS", "Morrow Point Elevation Feet", "Morrow Point Content 1000 AF", "Morrow Point Release CFS")
   table3 <- apply(table3,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
@@ -125,7 +129,7 @@ server1 <- shinyServer(function(input, output, session){
 
 
   #TABLE 4 - GLEN CANYON TO HOOVER DAM LOSSES
-  table4 <- data %>% filter(table==4)
+  table4 <- subset(data, data$table==4)
   table4 <- t(sapply(table4$line, substring, c(1,8,21,33,43,53,63,73,83,93,103),c(7,20,32,42,52,62,72,82,92,102,112)))
 
   colnames(table4) <- c("Date", 
@@ -151,13 +155,15 @@ output$DateOfData <- renderUI({
 })
 
 
-output$bigdonut <- renderPlot({
-  
   
   data.bd <- data.frame("Day"=table2$`Date`, "Month"=url_month, "Year" = url_year, "Total.System.Storage"=table2$`Total System Storage`, "System.Space.Available" =table2$`Total Available Space`, "lakesize" = table2$`Total Available Space` + table2$`Total System Storage`, "full" = round(table2$`Total System Storage`/(table2$`Total Available Space`+table2$`Total Available Space`)*100,0), "ymin" = 0, "xmin"=70, "xmax"=100) %>%
     mutate("lab" = paste(full, "%", sep="")) %>%
-    mutate("Date" = parse_date_time(paste(Day, Month, Year, sep=" "), orders="dmy")) %>%
-    filter(Date == max(Date))
+    mutate("Date" = parse_date_time(paste(Day, Month, Year, sep=" "), orders="dmy"))
+  data.bd <- subset(data.bd, data.bd$Date==max(data.bd$Date))
+
+
+
+output$bigdonut <- renderPlot({
 
   #tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
   bd <- ggplot(data.bd) + 
@@ -191,8 +197,8 @@ data.donut <- data.frame("Day" = table1$`Date`,"Month"=url_month, "Year"=url_yea
   left_join(caps, by="reservoir") %>%
   mutate("lab" = paste0(round(full/lakesize*100,0),"%"), "ymin" = 0, "xmin" = 70, "xmax" = 100) %>%
   mutate("reservoirLabel" = gsub("\\.", " ", reservoir)) %>%
-  mutate("Date" = parse_date_time(paste(Day, Month, Year, sep=" "), orders="dmy")) %>%
-  filter(Date == max(Date))
+  mutate("Date" = parse_date_time(paste(Day, Month, Year, sep=" "), orders="dmy"))
+data.donut <- subset(data.donut, data.donut$Date == max(Date))
 
   donut <- ggplot(data.donut) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
@@ -218,10 +224,40 @@ data.donut <- data.frame("Day" = table1$`Date`,"Month"=url_month, "Year"=url_yea
     
 donut
 
-  #ggsave(paste0("C:/Users/bcrary/Desktop/","plotout.jpg"), width=12, height=3)
- 
-  
-})  
+  })
+
+
+    output$hover_info <- renderUI({
+      
+      hover <- input$plot_hover
+      point <- nearPoints(data.bd, hover, xvar="xmin", yvar="full", threshold = 5, maxpoints = 1, addDist = TRUE)
+      if(nrow(point)==0) return(NULL)
+      
+      # calculate point position INSIDE the image as percent of total dimensions
+      # from left (horizontal) and from top (vertical)
+      left_pct <- (hover$x - hover$domain$left) / (hover$domain$right - hover$domain$left)
+      top_pct <- (hover$domain$top - hover$y) / (hover$domain$top - hover$domain$bottom)
+      
+      # calculate distance from left and bottom side of the picture in pixels
+      left_px <- hover$range$left + left_pct * (hover$range$right - hover$range$left)
+      top_px <- hover$range$top + top_pct * (hover$range$bottom - hover$range$top)
+      
+      # create style property fot tooltip
+      # background color is set so tooltip is a bit transparent
+      # z-index is set so we are sure are tooltip will be on top
+      style <- paste0("position:absolute; z-index:100; background-color: rgba(245, 245, 245, 0.85); ",
+                      "left:", left_px + 2, "px; top:", top_px + 2, "px;")
+      
+      # actual tooltip created as wellPanel
+      wellPanel(
+        style = style,
+        p(HTML(paste0("<b> Car: </b>", rownames(point), "<br/>")))
+       
+      ) 
+    })
+
+
+
 })
 
 shinyApp(ui = ui1, server = server1) 
@@ -248,7 +284,7 @@ cat("
 
 ")
 
-
+###Call functions
 rm(list=ls())
 library(shiny)
 monthStart <- function(x) {
@@ -257,17 +293,24 @@ monthStart <- function(x) {
   as.Date(x)
 }
 
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
 
-uframe <- read_csv("Users.csv", col_types=cols())
-uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
+
+m2 <- c("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
+ 
+
+uframe <- read.csv("Users_2012-2016.csv") %>% 
+  gather("month", "value", 4:15) %>%
+  mutate(month=match(month, m2))
+uframe$MoYear <- as.POSIXct(paste(uframe$month, "-", 1, "-", uframe$year, sep=""), format="%m-%d-%Y")
 
 
 ui <- fluidPage(
   
   fluidRow(
-    shiny::column(6, selectInput("scaleby","Scale Users by:",c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess"))
-    ),
-    shiny::column(6, selectInput("rscaleby", "Scale Resrvoirs by:", c("Maximum Storage", "End of Month Storage", "Percent Storage Change from Prior Year"))
+    shiny::column(6, selectInput("scaleby","Scale Users by:",c("Diversion", "Consumptive Use"))
     )
   ),
   fluidRow(
@@ -280,14 +323,14 @@ ui <- fluidPage(
             tabPanel("Map", div(leafletOutput("SidePlot", width="370px"), style = "height: 400px; background-color: #fcfcfc; align: left")
               ),
             tabPanel("Details",
-              div(tableOutput("shape"))
+              div(htmlOutput("detail"), style="width:370px; color:#4682B4; font-weight:bold")
             )
           ))
         )
       )
     )
   ),  
-    fluidRow(shiny::column(12, align="center", sliderInput("slider", "", min = min(uframe$MoYear),max =max(uframe$MoYear),value=max(uframe$MoYear),timeFormat="%b %Y", animate = TRUE)
+    fluidRow(shiny::column(12, align="center", sliderInput("slider", "", min = min(uframe$MoYear),max =as.POSIXct("2017-11-01"),value=as.POSIXct("2017-11-01"),timeFormat="%b %Y", animate = TRUE)
     )
   )
 )
@@ -295,18 +338,18 @@ ui <- fluidPage(
 
 server <- shinyServer(function(input, output, session){
   
-  uframe <- read_csv("Users.csv") %>% gather("factor", "value", 11:14)
-  nframe <- read_csv("Nodes.csv") %>% gather("factor", "value", 4:7)
+
+  nframe <- read_csv("Nodes2.csv") %>% mutate("NormMaxStorage" = MaxStorage/max(MaxStorage))
   riv <- read_csv("River.csv")
-  cons <- read_csv("connections.csv") 
-  uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
+  cons <- read_csv("connections2.csv") 
   nframe$MoYear <- as.POSIXct(paste(nframe$Month, "-", 1, "-", nframe$Year, sep=""), format="%m-%d-%Y")
-  
+  uframe <- read_csv("uframe.csv")
+  #uframe <- read.csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/Rmarkdown/uframe.csv")
   
   ##Link inputs to field names
   
-  inputscale <- c("End of Month Use", "End of Year Forecast", "Approved Annual Diversion", "Forecasted Annual Excess", "Maximum Storage", "End of Month Storage", "Percent Storage Change from Prior Year")
-  field <- c("endOfMonUse", "eoyForecast", "approvedAnnualVol", "forecastedExcess", "MaxStorage", "LiveStoragePerc", "PriorYearStorageChange")
+  inputscale <- c("Diversion", "Consumptive Use")
+  field <- c("Diversion", "Consumptive Use")
   scaletab <- data.frame(inputscale, field)
 
   
@@ -321,25 +364,24 @@ server <- shinyServer(function(input, output, session){
   
   ## Create reactive data frames
   puframe <- reactive({
-    df <- uframe %>% 
-      filter(MoYear == sliderMonth$Month & factor==scaletab[inputscale==input$scaleby,2])
+    df <- subset(uframe, uframe$MoYear == sliderMonth$Month & uframe$parameter==scaletab[inputscale==input$scaleby,2])
   })
   
   pnframe <- reactive({
-    df <- nframe %>% 
-      filter(MoYear == sliderMonth$Month & factor==scaletab[inputscale==input$rscaleby,2]) 
+    df <- subset(nframe, nframe$MoYear == sliderMonth$Month) 
   })
   
 
-  
   output$NetworkPlot <- renderPlotly({
-
-      gg <- ggplot(puframe(), aes(dx, dy)) + 
-      geom_point(data=puframe(), aes(size=value, text=sprintf(User), ids=User), colour="slategray", alpha=0.5) +
+#text=paste0("User: ", User, "<br>",input$scaleby," (kaf): ",round(value,0))
+#text=paste0("Reservoir: ", Reservoir, "<br>Storage Capacity (kaf): ", round(MaxStorage,0)))
+    gg <- ggplot(puframe(), aes(dx, dy)) + 
+      geom_point(data=puframe(), aes(size=UserNormValue, ids=User, colour=PlotValue, alpha=alpha,text=paste0("User: ", User, "<br>",input$scaleby," (kaf): ",round(value,0)))) +
       geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
-      geom_segment(data=cons, aes(x=dx, y=dy, xend=Diversionx, yend=Diversiony), color="steelblue", size=0.5, alpha=0.2) +
-      geom_point(data=pnframe(), aes(dx,dy, size=value, colour=value, text=sprintf("Reservoir: %s",Reservoir))) +
-      scale_colour_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83",guide=FALSE) +
+      geom_segment(data=cons, aes(x=dx, y=dy, xend=Diversionx, yend=Diversiony, linetype=Type), color="steelblue", size=0.5, alpha=0.2) +
+      geom_point(data=nframe, aes(dx,dy, size=NormMaxStorage, text=paste0("Reservoir: ", Reservoir, "<br>Storage Capacity (kaf): ", Description)), colour="steelblue") +
+      scale_colour_gradient2(low="#00ff83", midpoint=0.5, mid="#FFfa00", high="#FF8c00",guide=FALSE) +
+      scale_size(limits=c(0,1)) +
       coord_equal() +
       xlab("") + 
       ylab("") + 
@@ -348,7 +390,8 @@ server <- shinyServer(function(input, output, session){
       theme(panel.background=element_rect(colour=NULL, fill="white"), 
             panel.grid.major=element_blank(), 
             panel.grid.minor=element_blank(), 
-            axis.text=element_blank())
+            axis.text=element_blank(),
+            legend.position="none")
       
     gg <- ggplotly(gg, tooltip=c("text")) %>% config(displayModeBar = F) 
     
@@ -362,8 +405,8 @@ server <- shinyServer(function(input, output, session){
     event.data <- event_data("plotly_click")
     
     if(is.null(event.data)== F) {
-      selecteduser <- uframe %>% filter(dx == event.data$x & dy == event.data$y)
-      selectedres <-  nframe %>% filter(dx==event.data$x & dy == event.data$y)
+      selecteduser <- subset(uframe, uframe$dx == event.data$x & uframe$dy == event.data$y)
+      selectedres <-  subset(nframe, nframe$dx==event.data$x & nframe$dy == event.data$y)
     }
     selecteditem <- as.character(
       if(is.null(event.data)==T) {
@@ -378,7 +421,7 @@ server <- shinyServer(function(input, output, session){
     )
     
     UserDA <- st_read("UserDAs.shp", quiet=TRUE) %>% st_transform(4326)
-    UserDAplot <- UserDA %>% filter(WaterUser==selecteditem)
+    UserDAplot <- subset(UserDA, UserDA$WaterUser==selecteditem)
     pal <- colorFactor(c("#b2df8a", "steelblue", "firebrick3"), UserDAplot$Type)
 
     
@@ -394,28 +437,33 @@ server <- shinyServer(function(input, output, session){
   })
   
     
-  output$shape <- renderTable({
+  output$detail <- renderUI({
     
-    
+    descripts <- read_csv("descriptions.csv") 
     ##get subset based on selection
     event.data <- event_data("plotly_click")
 
     if(is.null(event.data)== F) {
-      selecteduser <- uframe %>% filter(dx == event.data$x & dy == event.data$y)
-      selectedres <-  nframe %>% filter(dx==event.data$x & dy == event.data$y)
+      selecteduser <- subset(uframe, uframe$dx == event.data$x & uframe$dy == event.data$y)
+      selectedres <- subset(nframe, nframe$dx == event.data$x & nframe$dy == event.data$y)
     }
     selecteditem <- as.character(
       if(is.null(event.data)==T) {
-        "Lower Colorado River Basin"
+        desc <- subset(descripts, descripts$Point == "Lower Colorado River Basin")
+        desc$Description
       } else if(dim(selecteduser)[1]!=0) {
-        selecteduser[1,1]
+          desc <- subset(descripts, descripts$Point == as.character(selecteduser[1,1])) 
+          desc$Description
       } else if(dim(selectedres)[1]!=0) {
-        selectedres[1,1]
+          desc <- subset(descripts, descripts$Point == as.character(selectedres[1,1])) 
+          desc$Description
       } else {
-        "Lower Colorado River Basin"
+        desc <- subset(descripts, descripts$Point == "Lower Colorado River Basin")
+        desc$Description
       }
     )
-    selecteditem
+  Desc <- HTML(paste("<br>", selecteditem, sep=""))
+  Desc
 
   })
 

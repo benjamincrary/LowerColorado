@@ -1,0 +1,107 @@
+---
+title: "test"
+author: "LimnoTech"
+date: "November 15, 2017"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+
+
+library(shiny)
+library(rmarkdown)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(leaflet)
+library(rgdal)
+library(rgeos)
+library(sf)
+library(raster)
+library(rvest)
+library(stringr)
+library(lubridate)
+library(gridExtra)
+library(tabulizer)
+library(data.table)
+library(zoo)
+```
+
+## R Markdown
+
+```{r echo = FALSE, warning=FALSE, results='asis'}
+
+
+###Call functions
+rm(list=ls())
+library(shiny)
+monthStart <- function(x) {
+  x <- as.POSIXlt(x)
+  x$mday <- 1
+  as.Date(x)
+}
+
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+
+###initial read of uframe for ui
+#uframe <- read_csv("Users.csv", col_types=cols())
+#uframe$MoYear <- as.POSIXct(paste(uframe$Month, "-", 1, "-", uframe$Year, sep=""), format="%m-%d-%Y")
+
+
+ui <- fluidPage(
+  fluidRow(column(12, tableOutput("tab")))
+  )
+
+
+server <- shinyServer(function(input, output, session){
+  
+#Query this year's use monthly use data   
+  url <- "https://www.usbr.gov/lc/region/g4000/hourly/use.pdf"      
+
+### Load pages 1-5. Direct coercion into data frame creates no concerns with these tables
+  tab1_5 <- extract_tables(url,pages=c(1,2,3,4,5), method="data.frame") 
+
+### Load page 6.  No tab delimiter between user and source on page 6, coerced table does not populate correctly. conditionally populate source, "X", based on last nchar of user name
+  tab6 <- extract_tables(url, pages=6, method="data.frame")
+  tab6[[1]]$X <- ""
+  tab6[[1]]$X <- ifelse(substrRight(tab6[[1]]$WATER.USER, 9)=="Diversion","Diversion", tab6[[1]]$X)
+  tab6[[1]]$X <- ifelse(substrRight(tab6[[1]]$WATER.USER, 16)=="Measured Returns", "Measured Returns", tab6[[1]]$X)
+  tab6[[1]]$X <- ifelse(substrRight(tab6[[1]]$WATER.USER, 18)=="Unmeasured Returns", "Unmeasured Returns", tab6[[1]]$X)
+  tab6[[1]]$X <- ifelse(substrRight(tab6[[1]]$WATER.USER, 15)=="Consumptive Use", "Consumptive Use", tab6[[1]]$X)
+
+### Load pages 7-8. Direct coercion into data frame creates no concerns with these tables 
+  tab7_8 <- extract_tables(url, pages=c(7,8), method="data.frame")
+
+
+### Load page 9. Coercion for this page is fine if isolated from other tables/pages using extract_tables function
+  tab9 <- extract_tables(url, pages=9, method="data.frame")
+  tab9 <- list(tab9[[1]]) ## removes extraneous second table on this page
+
+### merge tables into single dataframe
+  tab <- rbindlist(c(tab1_5, tab6, tab7_8, tab9))
+
+
+  tab2 <- tab %>% 
+    mutate(temp=lag(tab$X), temp2=lag(WATER.USER)) %>% 
+    mutate(User=na.locf(ifelse(temp=="",temp2,NA), na.rm=FALSE)) %>% 
+    filter(X!="") %>%
+    gather("month", "value", 3:14) %>%
+    mutate(parameter=X, year=2017) %>%
+    filter(parameter %in% c("Diversion", "Consumptive Use"))
+  
+
+    output$tab <- renderTable({
+    tab2
+  })
+  
+}) 
+  
+# Run the application 
+shinyApp(ui = ui, server = server) 
+
+
+```
+

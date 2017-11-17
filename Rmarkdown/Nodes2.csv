@@ -1,0 +1,9 @@
+Reservoir,dx,dy,MaxStorage,LiveStorage,LiveStoragePerc,PriorYearStorageChange,Month,Year,Description
+Lake Powell,1905787.703,27117496.67,24312.76596,11427,47,4,1,2007,24312
+Lake Mead,998719.6702,26754185.72,26121.51899,10318,39.5,5,1,2007,26121
+Lake Mohave,936085.2364,26495712.85,1700,1651,97.12,10,1,2007,1700
+Lake Havasu,1017148.235,26151687.08,600,554,92.33,12,1,2007,600
+Imperial Dam,1001700.18,25572579.84,9144,,,,,,9144
+Headgate Rock Dam,1051211.66,26037589.87,600,,,,,,No data available
+Palo Verde Dam,981982.71,25877855.74,600,,,,,,No data available
+Topock Bay,985413.06,26236764.63,600,,,,,,No data available
