@@ -39,6 +39,7 @@ resource_files:
 - ColRiv.shp
 - ColRiv.shp.xml
 - ColRiv.shx
+- Swirl_only.png
 ---
 
 ```{r setup, include=FALSE}
@@ -46,12 +47,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-#LCRB View
+#Basin View
+<span style="color:#696969;align="left">Basin View integrates geospatial and operational data published online by the United States Bureau of Reclamation (USBR) to provide an interactive view of spatial and temporal patterns in water use. Basin View is designed with the purpose of supporting transparency and shared understanding between water managers and stakeholders. In its current form, Basin View provides a detailed geospatial and temporal assessment of the Lower Colorado River Basin. Near real-time and historic data describing key reservoirs and primary water users are presented with several interactive figures.</span>
 
-##Lower Colorado River Basin View
-This page is designed to provide current and historic system and water use stats. Data is pulled from.... 
+##Lower Colorado River 
+<span style="color:#696969;align="left">The Colorado River Basin is a critical source of water to both the southwestern United States and Mexico, for which recent [studies](https://www.usbr.gov/lc/region/programs/crbstudy/FactSheet_June2013.pdf) have indicated that future supply and demand are major concerns. Basin-wide, it is [anticipated](https://www.usbr.gov/lc/region/programs/crbstudy/FactSheet_May2011.pdf) that supplies could decrease 10-20% within the next 30 years and that demands will increase due to growing urban populations and industrial activities. </span>
 
-##Current Reservoir Status  
+<span style="color:#696969;align="left">The Lower Colorado River Basin is the source for a number of water users in Arizona, California, and Nevada though the actual Basin also spans into Utah and New Mexico. Most of these users fall within the Basin boundaries, but water is delivered to adjacent municipalities and water districts. While the Lower Colorado River Basin includes several well-known landmarks, such as the Hoover Dam, there are a number of lesser-known but opertationally significant dams and reservoirs.  </span>
+
+##Current Reservoir Supply Status  
+<span style="color:#696969;align="left"> [Daily system status reports](https://www.usbr.gov/lc/region/g4000/hourly/levels.html) are produced by the USBR tabulating the status of several key dams and reservoirs, in addition to the total Basin system. These tabulated values are summarized below, where the total system and reservoir volumes are expressed as a percent of their respective capacities. </span>
 
 ```{r global_options, include=FALSE, resutls='asis'}
 library(shiny)
@@ -81,7 +86,7 @@ library(shiny)
 
 ui1 <- fluidPage(
   fluidRow(
-    column(12, htmlOutput("DateOfData"), aligh="left", style='color:#cccccc;font-style: italic;')
+    column(12, htmlOutput("DateOfData"), align="left", style='color:#cccccc;font-style: italic;')
   ), 
   fluidRow(
     column(12, div(plotOutput("bigdonut")))
@@ -91,28 +96,6 @@ ui1 <- fluidPage(
     column(6, div(leafletOutput("donutMap",width="370px")))
   )
 )
-#ui1 <- fluidPage(
-#  fluidRow(
-#      column(width=12,
-#        htmlOutput("DateOfData"), align="left", style='color:#cccccc;font-style: italic;'
-#      ),style="overflow-x:hidden;"
-#    ),
-#  fluidRow(
-#    column(width=12,
-#      div(
-#        style = "position:relative",
-#        plotOutput("bigdonut", hover = hoverOpts("plot_hover", delay = 100, delayType = "debounce")),
-#        uiOutput("hover_info"), align="right", style='padding:0px;'
-#      )
-#    ), style="overflow-x:hidden;"
-#  ), 
-#  fluidRow(
-#    column(width=6,
-#      plotOutput("donuts"), align ="left", style='padding:0px; height:610px; width:790px; object-fit: none;'
-#    ), 
-#    column(width=6)
-#  )  
-#)
 
 server1 <- shinyServer(function(input, output, session){
   
@@ -187,7 +170,7 @@ server1 <- shinyServer(function(input, output, session){
 
 
 output$DateOfData <- renderUI({
-  HTML(paste("<br><br>Status as of:", "<br>", url_month," ",max(table1$Date), ", ", url_year, "<br>", "(Percent full)", sep=""))
+  HTML(paste("<br><br>Status as of: ", url_month," ",max(table1$Date), ", ", url_year, "<br>", "(Percent full)", sep=""))
   
 })
 
@@ -211,7 +194,6 @@ output$DateOfData <- renderUI({
 
 output$bigdonut <- renderPlot({
 
-  #tot <- data.frame("reservoir"= "Total System", "full"=55, "lab"="55%", "lakesize"=10000,"ymin"=0,"xmin"=70, "xmax"=100)
   bd <- ggplot(data.bd) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
     geom_rect(aes(fill=full, ymax=full, ymin=ymin, xmax=xmax, xmin=xmin)) +
@@ -256,7 +238,7 @@ data.donut <- subset(data.donut, data.donut$Date == max(Date))
   donut <- ggplot(data.donut) + 
     geom_rect(aes(ymax=100, ymin=0, xmax=100, xmin=70), colour=NA, fill="grey90") +
     geom_rect(aes(fill=full/lakesize*100, ymax=full/lakesize*100, ymin=ymin, xmax=xmax, xmin=xmin)) +
-    geom_text(aes(x=0,y=0, label=lab), fontface=2, color="grey20", family="Calibri", size=7)+
+    geom_text(aes(x=0,y=0, label=lab), fontface=2, color="grey20", family="Calibri", size=7) +
     scale_fill_gradient2(low="#FF8c00", midpoint=50, mid="#FFfa00", high="#00ff83", limits=c(0,100), guide=FALSE) +
     coord_polar(theta="y") +
     xlim(c(0,100)) +   
@@ -318,7 +300,11 @@ shinyApp(ui = ui1, server = server1)
 
 
 ## Water Use Network
-The graphic below is depiction of the Lower Colorado River Basin and it's water users. The Colorado River is drawn to scale, and major reservoirs are symbolized as nodes along the flow path. Users are linked to a reservoir or pumping station with light gray lines. Users are visualized by bubbles which are scaled based on the end of month use. Use the slider to view usage patterns in previous months. Click on a node to pull up additional information in the pane to the right. 
+<span style="color:#696969;align="left">Water withdrawals from the Lower Colorado River are driven by industrial, agricultural, and potable demands. Each Water User in the Basin holds a contract with the USBR, which predetermines the total allowable withdrawal volumes. The Lower Colorado River Basin publishes historic [annual reports](https://www.usbr.gov/lc/region/g4000/wtracct.html) in addition to near real-time [monthly summaries](https://www.usbr.gov/lc/region/g4000/hourly/use.pdf) of the diversion and consumptive use for each permitted Water User. </span>
+
+<span style="color:#696969;align="left">The graphic below depicts the primary monthly withdrawals from the Lower Colorado River Basin, dating back to the year 2012. The Colorado River is drawn to scale and major reservoirs are symbolized as nodes along the flow path. The size of each reservoir node is relative to its storage capacity. Users are visualized by bubbles which have color and size scales based on the end of month use, each normalized to its maximum monthly diversion or consumption. Users are linked to a reservoir or pumping location with gray lines, where solid lines indicate the user pumps from a reservoir or other surface water source, dashed lines indicate that the user pumps from both surface sources and groundwater wells, and dotted lines indicate that the user pumps from groundwater wells. </span>
+
+<span style="color:#696969;align="left">Choose a metric to display using the drop down menu, and use the slider to view usage patterns in previous months. Hover over or click on a user or reservoir to pull up additional information in the pane to the right. </span>
 
 
 
@@ -328,7 +314,7 @@ cat("
 
 <style>
   .shiny-frame {
-  height: 1000px;
+  height: 920px;
   width: 775px;
   overflow-x: hidden;
   }
@@ -351,13 +337,18 @@ substrRight <- function(x, n){
 
 
 m2 <- c("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
- 
+
+
+########### 
+
+#read user list/dates for UI
 
 uframe <- read.csv("Users_2012-2016.csv") %>% 
   gather("month", "value", 4:15) %>%
   mutate(month=match(month, m2))
 uframe$MoYear <- as.POSIXct(paste(uframe$month, "-", 1, "-", uframe$year, sep=""), format="%m-%d-%Y")
 
+#Define layout
 
 ui <- fluidPage(
   
@@ -370,15 +361,18 @@ ui <- fluidPage(
     ), 
     column(6,
       fluidRow(
-        mainPanel(width=6, div(style="height:500px;",
+        mainPanel(width=8, div(style="height:500px;",
           tabsetPanel(type="pills",
-            tabPanel("Map", div(leafletOutput("SidePlot", width="370px"), style = "height: 400px; background-color: #fcfcfc; align: left")
-              ),
+            tabPanel("Map", div(leafletOutput("SidePlot", width="370px"), style = "height: 400px; background-color: white; align: left")
+            ),
             tabPanel("Details",
               div(htmlOutput("detail"), style="width:370px; color:#4682B4; font-weight:bold")
+            ),
+            tabPanel("Trend", 
+              div(plotlyOutput("trend", width="370px", height="400px"))
             )
-          ))
-        )
+          )
+        ))
       )
     )
   ),  
@@ -390,13 +384,13 @@ ui <- fluidPage(
 
 server <- shinyServer(function(input, output, session){
   
-
+#Read network relevant files
+  
   nframe <- read_csv("Nodes2.csv") %>% mutate("NormMaxStorage" = MaxStorage/max(MaxStorage))
   riv <- read_csv("River.csv")
   cons <- read_csv("connections2.csv") 
   nframe$MoYear <- as.POSIXct(paste(nframe$Month, "-", 1, "-", nframe$Year, sep=""), format="%m-%d-%Y")
   uframe <- read_csv("uframe.csv")
-  #uframe <- read.csv("C:/Users/bcrary/Desktop/Projects/CRB/TestViz/Rmarkdown/uframe.csv")
   
   ##Link inputs to field names
   
@@ -425,13 +419,12 @@ server <- shinyServer(function(input, output, session){
   
 
   output$NetworkPlot <- renderPlotly({
-#text=paste0("User: ", User, "<br>",input$scaleby," (kaf): ",round(value,0))
-#text=paste0("Reservoir: ", Reservoir, "<br>Storage Capacity (kaf): ", round(MaxStorage,0)))
+
     gg <- ggplot(puframe(), aes(dx, dy)) + 
       geom_point(data=puframe(), aes(size=UserNormValue, ids=User, colour=PlotValue, alpha=alpha,text=paste0("User: ", User, "<br>",input$scaleby," (kaf): ",round(value,0)))) +
+      geom_point(data=nframe, aes(dx,dy, size=NormMaxStorage, text=paste0("Reservoir: ", Reservoir, "<br>Storage Capacity (kaf): ", Description)), colour="steelblue") +
       geom_path(data=riv, aes(Longitude, Latitude), colour="steelblue", alpha=0.8, size=1) +
       geom_segment(data=cons, aes(x=dx, y=dy, xend=Diversionx, yend=Diversiony, linetype=Type), color="steelblue", size=0.5, alpha=0.2) +
-      geom_point(data=nframe, aes(dx,dy, size=NormMaxStorage, text=paste0("Reservoir: ", Reservoir, "<br>Storage Capacity (kaf): ", Description)), colour="steelblue") +
       scale_colour_gradient2(low="#00ff83", midpoint=0.5, mid="#FFfa00", high="#FF8c00",guide=FALSE) +
       scale_size(limits=c(0,1)) +
       coord_equal() +
@@ -472,6 +465,7 @@ server <- shinyServer(function(input, output, session){
       }
     )
     
+    #Read in polygons and set color palette
     UserDA <- st_read("UserDAs.shp", quiet=TRUE) %>% st_transform(4326)
     UserDAplot <- subset(UserDA, UserDA$WaterUser==selecteditem)
     pal <- colorFactor(c("#b2df8a", "steelblue", "firebrick3"), UserDAplot$Type)
@@ -491,7 +485,9 @@ server <- shinyServer(function(input, output, session){
     
   output$detail <- renderUI({
     
+    #Read Detail descriptions 
     descripts <- read_csv("descriptions.csv") 
+    
     ##get subset based on selection
     event.data <- event_data("plotly_click")
 
@@ -519,30 +515,82 @@ server <- shinyServer(function(input, output, session){
 
   })
 
-})
+  
+  
+output$trend <- renderPlotly({  
+  
+  
+  #Get click data
+  event.data <- event_data("plotly_click")
+    
+    if(is.null(event.data)== F) {
+      selecteduser <- subset(uframe, uframe$dx == event.data$x & uframe$dy == event.data$y)
+      selectedres <-  subset(nframe, nframe$dx==event.data$x & nframe$dy == event.data$y)
+    }
+    selecteditem <- as.character(
+      if(is.null(event.data)==T) {
+        "Lower Colorado River Basin"
+      } else if(dim(selecteduser)[1]!=0) {
+        selecteduser[1,1]
+      } else if(dim(selectedres)[1]!=0) {
+        selectedres[1,1]
+      } else {
+        "Lower Colorado River Basin"
+      }
+    )
 
+    
+    #test for Water User as selection, create empty plot data if not. 
+    usertest <- match(selecteditem, levels(factor(uframe$User)))
+    trend <- subset(uframe, uframe$User == selecteditem & uframe$parameter==input$scaleby)
+    trend$MoYear <- as.Date(trend$MoYear)
+    
+    nullplot <- data.frame(xc=1, yc=1, labelz="Select a Water User for use history")
+    
+    
+    if(is.na(usertest)) {
+      #non-Water User plot
+      tplot <- ggplot(nullplot) +
+        geom_text(aes(x=xc, y=yc, label=as.character(labelz))) +
+        theme_minimal() +
+        xlab("") + 
+        ylab("") +
+        theme(panel.background=element_rect(colour=NA, fill="grey98"), 
+            panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(), 
+            axis.text=element_blank(),
+            legend.position="none")
+    } else {
+    #Water User plot
+    tplot <- plot_ly(
+      data=trend,
+      x=~MoYear,
+      y=~value,
+      name=" ",
+      color=~value,
+      colors= c("#00ff83","#FFfa00","#FF8c00"),
+      showscale=FALSE,
+      type="bar") %>%
+      hide_colorbar() %>%
+      layout(showlegend=FALSE,showscale=FALSE, yaxis=list(title=paste(input$scaleby,"(kaf)", sep=" ")), xaxis=list(title="", range=c(as.Date("2012-01-01"), as.Date("2017-12-31"))))
+      
+    }
+    
+    tplot
+  })
+
+})
 
 
 shinyApp(ui = ui, server = server)
 
 
-
-
-
-  #uframe$scale <- reactive({ uframe$scale <- if(input$scaleby == "End of Month Use") {
-  #  uframe$endOfMonUse
-  #} else if(input$scaleby == "End of Year Forecast") {
-  #  uframe$eoyForecast 
-  #} else if (input$scaleby == "Approved Annual Diversion") {
-  #  uframe$approvedAnnualVol
-  #} else if (input$scaleby == "Forecasted Annual Excess") {
-  #  uframe$forecastedExcess
-  #}
-  #})
-
-
-
 ``` 
+
+<span style="color:#ededed;align="left">Author: [Ben Crary, LimnoTech](http://www.limno.com/team/ben-crary-eit/) </span>
+<img style="width:40px;height:40px;" align="right" src="Swirl_only.png"/> 
+
+
 
 
 
