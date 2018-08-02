@@ -144,7 +144,7 @@ server1 <- shinyServer(function(input, output, session){
   table3 <- t(sapply(table3$line, substring, c(1,5,12,22,30,39,52,59,68,81,88,97,109,118,126,138,147),c(4,11,21,29,38,51,58,67,80,87,96,108,117,125,137,146,154)))
   colnames(table3) <- c("Date", "Computed Inflow CFS", "Lake Powell Elevation Feet", "Lake Powell Content 1000 AF", "Lake Powell Release CFS", "Flaming Gorge Elevation Feet", "Flaming Gorge Content 1000 AF", "Flaming Gorge Release CFS", "Navajo Elevation Feet", "Navajo Content 1000 AF", "Navajo Release CFS", "Blue Mesa Elevation Feet", "Blue Mesa Content 1000 AF", "Blue Mesa Release CFS", "Morrow Point Elevation Feet", "Morrow Point Content 1000 AF", "Morrow Point Release CFS")
   table3 <- apply(table3,2,function(x)gsub('\\s+', '',x))   ## removing all leading/tailing whitespace
-  table3 <- as.data.frame(table3)                           ## setting back to data frame
+  table3 <- as.data.frame(table3)                          ## setting back to data frame
   table3 <- factorsNumeric(table3)                          ## setting all fields to type numeric (from factor) 
 
 
